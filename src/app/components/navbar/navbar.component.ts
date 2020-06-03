@@ -12,6 +12,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class NavbarComponent implements OnInit, OnDestroy {
   private listTitles: any[];
   location: Location;
+  // tslint:disable-next-line:variable-name
   mobile_menu_visible: any = 0;
   private toggleButton: any;
   private sidebarVisible: boolean;
@@ -112,7 +113,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
     const html = document.getElementsByTagName('html')[0];
 
-    if (this.mobile_menu_visible == 1) {
+    if (this.mobile_menu_visible === 1) {
       // $('html').removeClass('nav-open');
       html.classList.remove('nav-open');
       if ($layer) {

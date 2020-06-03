@@ -13,6 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
+import { FactureComponent } from './pages/facture/facture.component';
+import { PaiementComponent } from './pages/paiement/paiement.component';
 
 @NgModule({
   imports: [
@@ -25,7 +27,7 @@ import { ComponentsModule } from './components/components.module';
     AppRoutingModule,
     ToastrModule.forRoot()
   ],
-  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
+  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, FactureComponent, PaiementComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
