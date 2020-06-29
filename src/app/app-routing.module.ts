@@ -5,8 +5,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { AuthGuard } from './helpers/auth.guard';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 const routes: Routes = [
+   { path: '', component:  AdminLayoutComponent, canActivate: [AuthGuard] },
+   { path: 'login', component: AuthLayoutComponent },
+
+    // otherwise go to admincomponent
   {
     path: '',
     redirectTo: 'dashboard',

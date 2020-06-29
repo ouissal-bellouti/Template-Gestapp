@@ -22,7 +22,6 @@ export const ROUTES: RouteInfo[] = [
     icon: 'icon-single-02',
     class: ''
   },
-
    {
     path: '/produits',
     title: 'Produits',
@@ -43,7 +42,8 @@ export const ROUTES: RouteInfo[] = [
     rtlTitle: 'قائمة الجدول',
     icon: 'icon-single-02',
     class: ''
-  }, {
+  },
+  {
     path: '/facture',
     title: 'Facture',
     rtlTitle: 'طباعة',

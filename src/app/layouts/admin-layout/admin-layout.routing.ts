@@ -8,6 +8,12 @@ import { ClientsComponent } from '../../pages/clients/clients.component';
 import { DevisComponent } from '../../pages/devis/devis.component';
 import { FactureComponent } from 'src/app/pages/facture/facture.component';
 import { PaiementComponent } from 'src/app/pages/paiement/paiement.component';
+import { ProduitAddComponent } from 'src/app/pages/produits/produit-add/produit-add.component';
+import { ProduitEditComponent } from 'src/app/pages/produits/produit-edit/produit-edit.component';
+import { ProduitDetailComponent } from 'src/app/pages/produits/produit-detail/produit-detail.component';
+
+
+
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 export const AdminLayoutRoutes: Routes = [
@@ -19,6 +25,8 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'devis', component: DevisComponent },
   { path: 'facture', component: FactureComponent },
   { path: 'paiement', component: PaiementComponent},
+  { path: 'produit-add', component: ProduitAddComponent},
+  { path: 'produit-edit', component: ProduitEditComponent},
+  { path: 'produit-detail', component: ProduitDetailComponent}
 
-  // { path: "rtl", component: RtlComponent }
 ];
