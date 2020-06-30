@@ -35,6 +35,9 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
+import { AddClientComponent } from './pages/clients/add-client/add-client.component';
+import { EditClientComponent } from './pages/clients/edit-client/edit-client.component';
+import { ClientDetailsComponent } from './pages/clients/client-details/client-details.component';
 
 
 
@@ -65,7 +68,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSelectModule,
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent,
-    ProduitDetailComponent, ProduitAddComponent, ProduitEditComponent],
+    ProduitDetailComponent, ProduitAddComponent, ProduitEditComponent, AddClientComponent, EditClientComponent, ClientDetailsComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

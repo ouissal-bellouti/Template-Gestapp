@@ -21,10 +21,18 @@ export class ProduitsComponent implements OnInit {
 
   constructor(private api: ApiService, private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.apiservice.sendGetRequest().subscribe((data: any[])=>{
       console.log(data);
       this.produits = data['this.produit'];
+    });
+  }
+  getProduitDetail(id: number){
+    this.api.getProduitById(id)
+    .subscribe((data: any) =>{
+      this.produit = data;
+      console.log(this.produit);
+      this.isLoadingResults = false;
     });
   }
   deleteProduit(id: any) {

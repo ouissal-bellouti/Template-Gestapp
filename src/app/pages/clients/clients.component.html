@@ -4,128 +4,93 @@
     <div class=" col-md-12">
       <div class=" card">
         <div class=" card-header">
-          <h4 class=" card-title">Simple Table</h4>
-        </div>
-        <div class=" card-body">
-          <div class=" table-responsive">
-            <table class=" table tablesorter" id="">
-              <thead class=" text-primary">
-                <tr>
-                  <th>Name</th>
-                  <th>Country</th>
-                  <th>City</th>
-                  <th class=" text-center">Salary</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Dakota Rice</td>
-                  <td>Niger</td>
-                  <td>Oud-Turnhout</td>
-                  <td class=" text-center">$36,738</td>
-                </tr>
-                <tr>
-                  <td>Minerva Hooper</td>
-                  <td>CuraÃ§ao</td>
-                  <td>Sinaai-Waas</td>
-                  <td class=" text-center">$23,789</td>
-                </tr>
-                <tr>
-                  <td>Sage Rodriguez</td>
-                  <td>Netherlands</td>
-                  <td>Baileux</td>
-                  <td class=" text-center">$56,142</td>
-                </tr>
-                <tr>
-                  <td>Philip Chaney</td>
-                  <td>Korea, South</td>
-                  <td>Overland Park</td>
-                  <td class=" text-center">$38,735</td>
-                </tr>
-                <tr>
-                  <td>Doris Greene</td>
-                  <td>Malawi</td>
-                  <td>Feldkirchen in KÃ¤rnten</td>
-                  <td class=" text-center">$63,542</td>
-                </tr>
-                <tr>
-                  <td>Mason Porter</td>
-                  <td>Chile</td>
-                  <td>Gloucester</td>
-                  <td class=" text-center">$78,615</td>
-                </tr>
-                <tr>
-                  <td>Jon Porter</td>
-                  <td>Portugal</td>
-                  <td>Gloucester</td>
-                  <td class=" text-center">$98,615</td>
-                </tr>
-              </tbody>
-            </table>
+          <h4 class=" card-title">Liste des clients</h4>
+          <div class="example-loading-shade"
+                  *ngIf="isLoadingResults">
+           <div *ngIf="isLoadingResults"></div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class=" col-md-12">
-      <div class=" card card-plain">
-        <div class=" card-header">
-          <h4 class=" card-title">Table on Plain Background</h4>
-          <p class=" category">Here is a subtitle for this table</p>
+          <div ngbDropdown>
+            <form class="form-inline waves-light" mdbWavesEffect>
+              <div class="md-form mt-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+              </div>
+              <button class=" btn btn-link" type="button"  ngbTooltip="Ajouter" container="body" routerLink="/add-client" >
+                <i class=" tim-icons icon-simple-add"> </i>
+              </button>
+            </form>
+
+              <div
+                aria-labelledby="dropdownMenuLink"
+                class=" dropdown-menu-right"
+                ngbDropdownMenu
+              >
+
+              </div>
+
+            </div>
         </div>
         <div class=" card-body">
           <div class=" table-responsive">
             <table class=" table tablesorter" id="">
               <thead class=" text-primary">
                 <tr>
-                  <th>Name</th>
-                  <th>Country</th>
-                  <th>City</th>
-                  <th class=" text-center">Salary</th>
+                  <th>Nom</th>
+                  <th>Prenom</th>
+                  <th>Email</th>
+                  <th>telephone</th>
+                  <th>Adresse</th>
+                  <th>Ville</th>
+                  <th class=" text-center">Code Postal</th>
+                  <th class="text-center">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Dakota Rice</td>
-                  <td>Niger</td>
-                  <td>Oud-Turnhout</td>
-                  <td class=" text-center">$36,738</td>
+                  <td>Lassiou</td>
+                  <td>duttu</td>
+                  <td>Oud-@gmail.com</td>
+                  <td class=" text-left">0623124578</td>
+                  <td> Tanger Rue 07</td>
+                  <td>Tanger</td>
+                  <td class="text-center">12345</td>
+                  <td class="text-right">
+                    <div>
+                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Detail" container="body" routerLink="/client-details" >
+                      <i class=" tim-icons icon-components"> </i>
+                    </button>
+                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" routerLink="/edit-client" >
+                      <i class=" tim-icons icon-pencil"> </i>
+                    </button>
+                    <button class=" btn btn-link" (click)="deleteClient(client.id)" placement="left" ngbTooltip="Delete">
+                      <i class=" tim-icons icon-trash-simple"> </i>
+                    </button>
+                  </div>
+                  </td>
                 </tr>
-                <tr>
-                  <td>Minerva Hooper</td>
-                  <td>CuraÃ§ao</td>
-                  <td>Sinaai-Waas</td>
-                  <td class=" text-center">$23,789</td>
+                <tr *ngFor="let client of clients" >
+                  <td> {{client.nom}} </td>
+                  <td> {{client.prenom}} </td>
+                  <td> {{client.email}} </td>
+                  <td class="text-left"> {{client.telephone}} </td>
+                  <td> {{client.adresse}} </td>
+                  <td> {{client.ville}} </td>
+                  <td class="text-center"> {{client.codepostale}} </td>
+                  <td class=" text-right">
+                    <div>
+                      <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Detail" container="body" routerLink="/client-details" >
+                        <i class=" tim-icons icon-components"> </i>
+                      </button>
+                      <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" routerLink="/edit-client" >
+                        <i class=" tim-icons icon-pencil"> </i>
+                      </button>
+                      <button class=" btn btn-link" (click)="deleteClient(client.id)" placement="left" ngbTooltip="Delete">
+                        <i class=" tim-icons icon-trash-simple"> </i>
+                      </button>
+                    </div>
+                  </td>
                 </tr>
-                <tr>
-                  <td>Sage Rodriguez</td>
-                  <td>Netherlands</td>
-                  <td>Baileux</td>
-                  <td class=" text-center">$56,142</td>
-                </tr>
-                <tr>
-                  <td>Philip Chaney</td>
-                  <td>Korea, South</td>
-                  <td>Overland Park</td>
-                  <td class=" text-center">$38,735</td>
-                </tr>
-                <tr>
-                  <td>Doris Greene</td>
-                  <td>Malawi</td>
-                  <td>Feldkirchen in KÃ¤rnten</td>
-                  <td class=" text-center">$63,542</td>
-                </tr>
-                <tr>
-                  <td>Mason Porter</td>
-                  <td>Chile</td>
-                  <td>Gloucester</td>
-                  <td class=" text-center">$78,615</td>
-                </tr>
-                <tr>
-                  <td>Jon Porter</td>
-                  <td>Portugal</td>
-                  <td>Gloucester</td>
-                  <td class=" text-center">$98,615</td>
-                </tr>
+
+
               </tbody>
             </table>
           </div>

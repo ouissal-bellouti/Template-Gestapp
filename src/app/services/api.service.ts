@@ -56,8 +56,8 @@ export class ApiService {
     );
   }
 
-  addProduit(produits: Produit): Observable<Produit> {
-    return this.http.post<Produit>(this.API_KEY, produits, httpOptions).pipe(
+  addProduit(produit: Produit): Observable<Produit> {
+    return this.http.post<Produit>(this.API_KEY, produit, httpOptions).pipe(
       tap((c: Produit) => console.log(`added produit w/ id=${c.id}`)),
       catchError(this.handleError<Produit>('addProduit'))
     );

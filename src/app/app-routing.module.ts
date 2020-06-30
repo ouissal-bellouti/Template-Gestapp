@@ -15,7 +15,7 @@ const routes: Routes = [
    { path: '', component:  AdminLayoutComponent, canActivate: [AuthGuard] },
    { path: 'login', component: AuthLayoutComponent },
 
-    // otherwise go to admincomponent
+    // otherwise go to AdminLayoutcomponent
   {
     path: '',
     redirectTo: 'dashboard',

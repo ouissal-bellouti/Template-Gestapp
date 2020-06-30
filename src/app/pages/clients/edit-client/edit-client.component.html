@@ -1,0 +1,145 @@
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h3 class="title">Ajouter un client</h3>
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+        <div class="button-row">
+          <a class="title" class="disabled" color="" [routerLink]="['/clients']"><button class="btn btn-danger btn-link">Liste</button></a> / Ajouter
+        </div>
+      </div>
+
+   <div class="card-body">
+     <form [formGroup] ="clientForm" (ngSubmit)="onFormSubmit()">
+        <div class="row">
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              <label> Nom </label>
+              <input
+              class="form-control"
+              type="text"
+              formControlName="Nom"
+              placeholder="Nom"
+              errorStateMatcher="matcher"
+              />
+              <mat-error>
+                <span *ngIf="!clientForm.get('Nom').valid && clientForm.get('Nom').touched">Ce champs est requis</span>
+              </mat-error>
+            </div>
+          </div>
+
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              <label> Prenom </label>
+              <input
+              type="text"
+              class="form-control"
+              formControlName="Prenom"
+              placeholder="Prenom"
+              />
+              <mat-error>
+                <span *ngIf="!clientForm.get('Prenom').valid && clientForm.get('Prenom').touched">Ce champs est requis</span>
+              </mat-error>
+            </div>
+          </div>
+
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              <label> Email </label>
+              <input
+              type="email"
+              class="form-control"
+              formControlName="Email"
+              placeholder="dutti@gmail.com"
+              />
+              <mat-error>
+                <span *ngIf="!clientForm.get('Email').valid && clientForm.get('Email').touched">Ce champs est requis</span>
+              </mat-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              <label> Telephone </label>
+              <input
+              class="form-control"
+              type="text"
+              formControlName="Telephone"
+              placeholder="0625143678"
+              />
+              <mat-error>
+                <span *ngIf="!clientForm.get('Telephone').valid && clientForm.get('Telephone').touched">Ce champs est requis</span>
+              </mat-error>
+            </div>
+          </div>
+
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              <label > Adresse </label>
+              <input
+              class="form-control"
+              type="text"
+              formControlName="Adresse"
+              placeholder=""
+              />
+              <mat-error>
+                <span *ngIf="!clientForm.get('Adresse').valid && clientForm.get('Adresse').touched"></span>
+              </mat-error>
+            </div>
+          </div>
+
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              <label > Ville </label>
+              <input
+              class="form-control"
+              type="text"
+              formControlName="Ville"
+              placeholder=""
+              />
+
+              <mat-error>
+                <span *ngIf="!clientForm.get('Ville').valid && clientForm.get('Ville').touched"></span>
+              </mat-error>
+            </div>
+          </div>
+        </div>
+
+        <div class=" row">
+          <div class=" col-md-4 pr-md-1">
+            <div class=" form-group">
+
+              <label> Code Postale </label>
+              <input
+              class="form-control"
+              type="text"
+              formControlName="CodePostal"
+              placeholder="15090"
+              />
+
+              <mat-error>
+                <span *ngIf="!clientForm.get('CodePostale').valid && clientForm.get('CodePostal').touched">Ce champs est requis</span>
+              </mat-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+     <div class=" card-footer">
+    <button class=" btn btn-fill btn-danger" type="submit" [disabled]="!clientForm.valid" > Save </button>
+       </div>
+     </form>
+
+   </div>
+
+
+    </div>
+
+  </div>
+</div>
+
