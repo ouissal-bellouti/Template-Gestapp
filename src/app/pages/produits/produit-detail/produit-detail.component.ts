@@ -12,9 +12,9 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class ProduitDetailComponent implements OnInit {
 
-  produit: Produit = { id: null, prix: null, tva: null, description:'',unite: '' , reference: null, designation: '',
-  categorie: '' ,
-  stock: ''};
+  produit: Produit = { id: null, prix: null, tva: null, description:'',unite: '' , designation: '',
+  idCategorie: null ,
+  idStock: null };
   isloadinResults = true;
 
   constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) { }

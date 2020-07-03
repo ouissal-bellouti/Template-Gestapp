@@ -5,16 +5,13 @@
       <div class=" card">
         <div class=" card-header">
           <h4 class=" card-title">Liste des clients</h4>
-          <div class="example-loading-shade"
-                  *ngIf="isLoadingResults">
-           <div *ngIf="isLoadingResults"></div>
-          </div>
+
           <div ngbDropdown>
-            <form class="form-inline waves-light" mdbWavesEffect>
+            <form  class="form-inline waves-light" mdbWavesEffect>
               <div class="md-form mt-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
               </div>
-              <button class=" btn btn-link" type="button"  ngbTooltip="Ajouter" container="body" routerLink="/add-client" >
+              <button class=" btn btn-link" type="button"  ngbTooltip="Ajouter" container="body" routerLink='/add-client' >
                 <i class=" tim-icons icon-simple-add"> </i>
               </button>
             </form>
@@ -61,29 +58,30 @@
                     <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" routerLink="/edit-client" >
                       <i class=" tim-icons icon-pencil"> </i>
                     </button>
-                    <button class=" btn btn-link" (click)="deleteClient(client.id)" placement="left" ngbTooltip="Delete">
+                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete">
                       <i class=" tim-icons icon-trash-simple"> </i>
                     </button>
                   </div>
                   </td>
                 </tr>
-                <tr *ngFor="let client of clients" >
-                  <td> {{client.nom}} </td>
-                  <td> {{client.prenom}} </td>
-                  <td> {{client.email}} </td>
-                  <td class="text-left"> {{client.telephone}} </td>
-                  <td> {{client.adresse}} </td>
-                  <td> {{client.ville}} </td>
-                  <td class="text-center"> {{client.codepostale}} </td>
+                <tr *ngFor="let client of data" >
+                  <td> {{client.id}} </td>
+                  <td> {{client.Nom}} </td>
+                  <td> {{client.Prenom}} </td>
+                  <td> {{client.Email}} </td>
+                  <td class="text-left"> {{client.Telephone}} </td>
+                  <td> {{client.Adresse}} </td>
+                  <td> {{client.Ville}} </td>
+                  <td class="text-center"> {{client.CodePostale}} </td>
                   <td class=" text-right">
                     <div>
-                      <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Detail" container="body" routerLink="/client-details" >
+                      <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Detail" container="body" (click)="getdata(client)" >
                         <i class=" tim-icons icon-components"> </i>
                       </button>
-                      <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" routerLink="/edit-client" >
+                      <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" (click)="EditData(client)" >
                         <i class=" tim-icons icon-pencil"> </i>
                       </button>
-                      <button class=" btn btn-link" (click)="deleteClient(client.id)" placement="left" ngbTooltip="Delete">
+                      <button class=" btn btn-link" (click)="deleteData(client.id)" placement="left" ngbTooltip="Delete">
                         <i class=" tim-icons icon-trash-simple"> </i>
                       </button>
                     </div>

@@ -7,6 +7,7 @@ import { UtilisateursComponent } from '../../pages/utilisateurs/utilisateurs.com
 
 import { DevisComponent } from '../../pages/devis/devis.component';
 
+
 import { FactureComponent } from 'src/app/pages/facture/facture.component';
 
 import { PaiementComponent } from 'src/app/pages/paiement/paiement.component';
@@ -20,6 +21,10 @@ import { ClientsComponent } from '../../pages/clients/clients.component';
 import { AddClientComponent } from 'src/app/pages/clients/add-client/add-client.component';
 import { EditClientComponent } from 'src/app/pages/clients/edit-client/edit-client.component';
 import { ClientDetailsComponent } from 'src/app/pages/clients/client-details/client-details.component';
+import { CategorieProduitComponent } from 'src/app/pages/categorie-produit/categorie-produit.component';
+import { AddDevisComponent } from 'src/app/pages/devis/add-devis/add-devis.component';
+import { AddLignedevisComponent } from 'src/app/pages/devis/add-lignedevis/add-lignedevis.component';
+import { ListLignedevisComponent } from 'src/app/pages/devis/list-lignedevis/list-lignedevis.component';
 
 
 
@@ -40,5 +45,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'add-client', component: AddClientComponent},
   { path: 'edit-client', component: EditClientComponent},
   { path: 'client-details', component: ClientDetailsComponent},
+  { path: 'categories', component: CategorieProduitComponent},
+  { path: 'add-devis', component: AddDevisComponent}
 
 ];

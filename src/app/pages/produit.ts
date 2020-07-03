@@ -1,12 +1,14 @@
+import { Scategorie } from './scategorie';
+import { Categorie } from 'src/app/pages/categorie'
+
 export class Produit {
   id: number;
   prix: number;
   tva: number;
   description: string;
   unite: string;
-  reference: number;
   designation: string;
-  categorie: string;
-  stock: string;
+  idCategorie: number;
+  idStock: number;
 
 }

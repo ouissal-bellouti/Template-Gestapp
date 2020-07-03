@@ -64,7 +64,7 @@
 
                 <tr *ngFor="let produit of produits">
                   <td>
-             <img style="width: 50%; height: 50%;" src=" {{produit.image}} " alt="" />
+             <img style="width: 50%; height: 50%;"   [attr.src]="produit.Image"  />
                   </td>
                   <td >
                     <h1>{{produit.reference}}:{{produit.designation}}</h1>

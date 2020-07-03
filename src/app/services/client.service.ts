@@ -3,67 +3,37 @@ import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Client } from '../pages/client';
+import { environment } from 'src/environments/environment';
+
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
-  API_KEY = 'TestwithDohaAndOuissal';
+  formdata: Client;
+  readonly apiUrl ='http://localhost:4000';
+  clients : Client[];
+  choixmenu: String = 'A';
+
   constructor(private http: HttpClient) { }
 
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      //  TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      //  Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+  getData(){
+    return this.http.get(`${this.apiUrl}/api/Clients`)
   }
-
-  getClient(): Observable<Client[]> {
-    return this.http.get<Client[]>(`${this.API_KEY}`)
-    .pipe(
-      tap(Clients => console.log('fetched Clients')),
-      catchError(this.handleError('getClients', []))
-    );
+  postData(formdata) {
+    return this.http.post(`${this.apiUrl}/api/Clients`,formdata);
   }
-
-  getClientById(id: number): Observable<Client> {
-    const url = `${this.API_KEY}/${id}`;
-    return this.http.get<Client>(url).pipe(
-      tap(_ => console.log(`fetched Clients id=${id}`)),
-      catchError(this.handleError<Client>(`getClientById id=${id}`))
-    );
+  putData(id,formData){
+    return this.http.put(`/api/Client/5${id}`,formData);
   }
-
-  addClient( client: Client): Observable<Client> {
-    return this.http.post<Client>(this.API_KEY, Client, httpOptions).pipe(
-      tap((c: Client) => console.log(`added Client w/ id=${c.id}`)),
-      catchError(this.handleError<Client>('addClient'))
-    );
+  deleteData(id){
+    return this.http.delete(`/api/Clients${id}`);
   }
-
-  updateClient(id: number, client: Client): Observable<any> {
-    const url = `${this.API_KEY}/${id}`;
-    return this.http.put(url, Client, httpOptions).pipe(
-      tap(_ => console.log(`updated Client i{id}`)),
-      catchError(this.handleError<any>('updatedClient'))
-    );
-  }
-
-  deleteClient(id: number): Observable<Client> {
-    const url = `${this.API_KEY}/${id}`;
-    return this.http.delete<Client>(url, httpOptions).pipe(
-      tap(_ => console.log(`deleted Client id=${id}`)),
-      catchError(this.handleError<Client>('deleteClients'))
-    );
+  getDatabyId(id) {
+    return this.http.get(`${this.apiUrl}/api/Clients${id}`);
   }
 
 }

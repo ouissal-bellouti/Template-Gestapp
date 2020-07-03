@@ -3,161 +3,82 @@
   <div class=" row">
     <div class=" col-md-12">
       <div class=" card">
-        <div class=" card-header mb-5">
-          <h5 class=" card-category">Black Table Heading</h5>
-          <h3 class=" card-title">Created using Poppins Font Family</h3>
+        <div class=" card-header">
+          <h4 class=" card-title">Liste des Devis</h4>
+
+          <div ngbDropdown>
+            <form  class="form-inline waves-light" mdbWavesEffect>
+              <div class="md-form mt-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+              </div>
+              <button class=" btn btn-inline-dnger" type="button"  ngbTooltip="Ajouter" container="body" (click)="newDevis()" >
+                <i class=" tim-icons icon-simple-add"> </i>
+              </button>
+            </form>
+
+              <div
+                aria-labelledby="dropdownMenuLink"
+                class=" dropdown-menu-right"
+                ngbDropdownMenu
+              >
+
+              </div>
+
+            </div>
         </div>
         <div class=" card-body">
-          <div class=" typography-line">
-            <h1><span> Header 1 </span> The Life of Black Dashboard</h1>
-          </div>
-          <div class=" typography-line">
-            <h2><span> Header 2 </span> The Life of Black Dashboard</h2>
-          </div>
-          <div class=" typography-line">
-            <h3><span> Header 3 </span> The Life of Black Dashboard</h3>
-          </div>
-          <div class=" typography-line">
-            <h4><span> Header 4 </span> The Life of Black Dashboard</h4>
-          </div>
-          <div class=" typography-line">
-            <h5><span> Header 5 </span> The Life of Black Dashboard</h5>
-          </div>
-          <div class=" typography-line">
-            <h6><span> Header 6 </span> The Life of Black Dashboard</h6>
-          </div>
-          <div class=" typography-line">
-            <p>
-              <span> Paragraph </span> I will be the leader of a company that
-              ends up being worth billions of dollars, because I got the
-              answers. I understand culture. I am the nucleus. I think thatâs a
-              responsibility that I have, to push possibilities, to show people,
-              this is the level that things could be at.
-            </p>
-          </div>
-          <div class=" typography-line">
-            <span> Quote </span>
-            <blockquote>
-              <p class=" blockquote blockquote-danger">
-                "I will be the leader of a company that ends up being worth
-                billions of dollars, because I got the answers. I understand
-                culture. I am the nucleus. I think that's a responsibility that
-                I have, to push possibilities, to show people, this is the level
-                that things could be at." <br />
+          <div class=" table-responsive">
+            <table class=" table tablesorter" id="">
+              <thead class=" text-primary">
+                <tr>
+                  <th>Date DE CREATION</th>
+                  <th>CLIENT</th>
+                  <th>DATE DE LIVRAIOSON</th>
+                  <th>TOTALE TTC</th>
+                  <th>TOTALE HT</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr >
 
-                <br />
+                  <td> 1 </td>
+                  <td>  2</td>
+                  <td>  3</td>
+                  <td> 40</td>
+                  <td> 5</td>
+                  <td class="text-center">
+                    <div>
+                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" (click)="onSelect()">
+                      <i class=" tim-icons icon-pencil"> </i>
+                    </button>
+                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete" (click)="onDelete()">
+                      <i class=" tim-icons icon-trash-simple"> </i>
+                    </button>
+                  </div>
+                  </td>
+                </tr>
+                <tr *ngFor="let devis of devisList">
+                  <td class="hidden"> {{devis.id}} </td>
+                  <td> {{devis.dateCreation | date:'dd/MM/yyyy'}} </td>
+                  <td> {{devis.nomClient}} </td>
+                  <td> {{devis.dateLivraison | date:'dd/MM/yyyy'}} </td>
+                  <td> {{devis.totTTC}} </td>
+                  <td class=" text-left"> {{devis.totHT}} </td>
+                  <td class="text-center">
+                    <div>
+                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" (click)="onSelect(devis)">
+                      <i class=" tim-icons icon-pencil"> </i>
+                    </button>
+                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete" (click)="onDelete(devis.id)">
+                      <i class=" tim-icons icon-trash-simple"> </i>
+                    </button>
+                  </div>
+                  </td>
+                </tr>
 
-                <small> - Noaa </small>
-              </p>
-            </blockquote>
-          </div>
-          <div class=" typography-line">
-            <span> Muted Text </span>
-            <p class=" text-muted">
-              I will be the leader of a company that ends up being worth
-              billions of dollars, because I got the answers...
-            </p>
-          </div>
-          <div class=" typography-line">
-            <span> Primary Text </span>
-            <p class=" text-primary">
-              I will be the leader of a company that ends up being worth
-              billions of dollars, because I got the answers...
-            </p>
-          </div>
-          <div class=" typography-line">
-            <span> Info Text </span>
-            <p class=" text-info">
-              I will be the leader of a company that ends up being worth
-              billions of dollars, because I got the answers...
-            </p>
-          </div>
-          <div class=" typography-line">
-            <span> Success Text </span>
-            <p class=" text-success">
-              I will be the leader of a company that ends up being worth
-              billions of dollars, because I got the answers...
-            </p>
-          </div>
-          <div class=" typography-line">
-            <span> Warning Text </span>
-            <p class=" text-warning">
-              I will be the leader of a company that ends up being worth
-              billions of dollars, because I got the answers...
-            </p>
-          </div>
-          <div class=" typography-line">
-            <span> Danger Text </span>
-            <p class=" text-danger">
-              I will be the leader of a company that ends up being worth
-              billions of dollars, because I got the answers...
-            </p>
-          </div>
-          <div class=" typography-line">
-            <h2>
-              <span> Small Tag </span> Header with small subtitle <br />
-
-              <small> Use "small" tag for the headers </small>
-            </h2>
-          </div>
-          <div class=" typography-line">
-            <span> Lists </span>
-            <div class=" row">
-              <div class=" col-md-3">
-                <h5>Unordered List</h5>
-                <ul>
-                  <li>List Item</li>
-                  <li>List Item</li>
-                  <li class=" list-unstyled">
-                    <ul>
-                      <li>List Item</li>
-                      <li>List Item</li>
-                      <li>List Item</li>
-                    </ul>
-                  </li>
-                  <li>List Item</li>
-                </ul>
-              </div>
-              <div class=" col-md-3">
-                <h5>Ordered List</h5>
-                <ol>
-                  <li>List Item</li>
-                  <li>List Item</li>
-                  <li>List item</li>
-                  <li>List Item</li>
-                </ol>
-              </div>
-              <div class=" col-md-3">
-                <h5>Unstyled List</h5>
-                <ul class=" list-unstyled">
-                  <li>List Item</li>
-                  <li>List Item</li>
-                  <li>List item</li>
-                  <li>List Item</li>
-                </ul>
-              </div>
-              <div class=" col-md-3">
-                <h5>Inline List</h5>
-                <ul class=" list-inline">
-                  <li class=" list-inline-item">List1</li>
-                  <li class=" list-inline-item">List2</li>
-                  <li class=" list-inline-item">List3</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class=" typography-line">
-            <span> Code </span>
-            <p>
-              This is <code> .css-class-as-code </code> , an example of an
-              inline code element. Wrap inline code within a
-              <code> <code>...</code> </code> tag.
-            </p>
-            <pre>
-1. #This is an example of preformatted text.<br>
-
-2. #Here is another line of code
-</pre>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

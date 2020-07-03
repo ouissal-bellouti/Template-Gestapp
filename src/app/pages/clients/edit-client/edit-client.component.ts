@@ -4,13 +4,6 @@ import { ClientService } from 'src/app/services/client.service';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 @Component({
   selector: 'app-edit-client',
   templateUrl: './edit-client.component.html',
@@ -18,64 +11,67 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class EditClientComponent implements OnInit {
 
-  clientForm: FormGroup;
-  id: number =null;
-  Nom : '';
-  Prenom :'';
-  Email :'';
-  Telephone : '';
-  Adresse : '';
-  Ville : '';
-  CodePostal : number =  null ;
-  isLoadingResults = false;
-  matcher = new MyErrorStateMatcher();
+  ClientForm: FormGroup;
+  data: any;
+  submitted= false;
+  EventValue: any ='Save';
+
+
 
   constructor(private router: Router, private route: ActivatedRoute, private api: ClientService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.getClientByid(this.route.snapshot.params.id)
-    this.clientForm = this.formBuilder.group({
-      Nom : [null, Validators.required],
-      Prenom : [null, Validators.required],
-      Email : [null, Validators.required],
-      Telephone : [null, Validators.required],
-      Address : [null, Validators.required],
-      Ville : [null, Validators.required],
-      CodePostale : [null, Validators.required]
-    });
+    this.getdatabyId(this.data.id);
+
+    this.ClientForm = new FormGroup({
+      Id: new FormControl(null),
+      Nom: new FormControl('',[Validators.required]),
+      Prenom: new FormControl('',[Validators.required]),
+      Email:new FormControl('',[Validators.required]),
+      Telephone: new FormControl('',[Validators.required]),
+      Address: new FormControl('',[Validators.required]),
+      Ville: new FormControl('',[Validators.required]),
+      Codepostale: new FormControl('',[Validators.required]),
+    })
+
+
   }
 
-  getClientByid(id: any) {
-    this.api.getClientById(id).subscribe((data: any) => {
-      this.id = data.id;
-      this.clientForm.setValue({
-        Nom : data.Nom,
-        Prenom : data.Prenpm,
-        Email : data.Email,
-        Telephone : data.Telephone,
-        Adress : data.Adress,
-        Ville : data.Ville,
-        CodePostale : data.CodePostale
-      });
-    });
+  EditData(Data) {
+    this.ClientForm.controls.Id.setValue(Data.Id);
+    this.ClientForm.controls.Nom.setValue(Data.Nom);
+    this.ClientForm.controls.Prenom.setValue(Data.Prenom);
+    this.ClientForm.controls.Email.setValue(Data.Email);
+    this.ClientForm.controls.Telephone.setValue(Data.Telephone);
+    this.ClientForm.controls.Adresse.setValue(Data.Adresse);
+    this.ClientForm.controls.Ville.setValue(Data.Ville);
+    this.EventValue = 'Update';
+  }
+  Update() {
+    this.submitted = true;
+
+    if (this.ClientForm.invalid) {
+     return;
+    }
+    this.api.putData(this.ClientForm.value.ClientId,this.ClientForm.value).subscribe((data: any[]) => {
+      this.data = data;
+      this.restForm();
+    })
+  }
+  getdatabyId(id: any) {
+    this.api.getDatabyId(id).subscribe((data: any) => {
+      this.data = data.id;
+    })
   }
 
-  onFormSubmit() {
-    this.isLoadingResults = true;
-    this.api.updateClient(this.id, this.clientForm.value)
-      .subscribe((res: any) => {
-          const id = res._id;
-          this.isLoadingResults = false;
-          this.router.navigate(['/Client-details', id]);
-        }, (err: any) => {
-          console.log(err);
-          this.isLoadingResults = false;
-        }
-      );
+  restForm(client?: NgForm) {
+    this.ClientForm.reset();
+    this.EventValue = 'Update';
+    this.submitted = false;
   }
 
-  clientDetails() {
-    this.router.navigate(['/client-details', this.id]);
-  }
+
+
+
 
 }

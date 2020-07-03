@@ -4,13 +4,7 @@ import { Router } from '@angular/router';
 import { FormControl, FormBuilder, FormGroupDirective, FormGroup,NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+
 
 @Component({
   selector: 'app-add-client',
@@ -19,43 +13,50 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class AddClientComponent implements OnInit {
 
-  clientForm: FormGroup;
-  Nom : '';
-  Prenom :'';
-  Email :'';
-  Telephone : '';
-  Adresse : '';
-  Ville : '';
-  CodePostal : null ;
-  isLoadingResults = false;
-  matcher = new MyErrorStateMatcher();
+
+  data: any;
+  ClientForm: FormGroup;
+  submitted = false;
+  EventValue: any = 'Save';
 
 
-  constructor(private router: Router, private api: ClientService, private formBuilder: FormBuilder) { }
+
+  constructor(private api: ClientService, private router: Router,) { }
 
   ngOnInit(): void {
-    this.clientForm = this.formBuilder.group({
-      Nom : [null, Validators.required],
-      Prenom : [null, Validators.required],
-      Email : [null, Validators.required],
-      Telephone : [null, Validators.required],
-      Address : [null, Validators.required],
-      Ville : [null, Validators.required],
-      CodePostale : [null, Validators.required]
-    });
-  }
 
-  onFormSubmit() {
-    this.isLoadingResults = true;
-    this.api.addClient(this.clientForm.value)
-      .subscribe((res: any) => {
-          const id = res._id;
-          this.isLoadingResults = false;
-          this.router.navigate(['client-details', id]);
-        }, (err: any) => {
-          console.log(err);
-          this.isLoadingResults = false;
-        });
+    this.ClientForm = new FormGroup({
+      Id: new FormControl(null),
+      Nom: new FormControl('',[Validators.required]),
+      Prenom: new FormControl('',[Validators.required]),
+      Email:new FormControl('',[Validators.required]),
+      Telephone: new FormControl('',[Validators.required]),
+      Address: new FormControl('',[Validators.required]),
+      Ville: new FormControl('',[Validators.required]),
+      Codepostale: new FormControl('',[Validators.required]),
+    })
+
+}
+
+Save() {
+  this.submitted = true;
+  if (this.ClientForm.invalid) {
+    return;
   }
+  this.api.postData(this.ClientForm.value).subscribe((data: any[]) =>
+  {
+    this.data = data;
+    this.restForm();
+
+  })
+}
+
+restForm() {
+
+  this.ClientForm.reset();
+  this.EventValue = 'Save';
+  this.submitted = false;
+}
+
 
 }

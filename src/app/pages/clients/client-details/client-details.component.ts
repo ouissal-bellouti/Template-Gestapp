@@ -16,17 +16,9 @@ export class ClientDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private api: ClientService, private router: Router) { }
 
-  getclientDetails(id: number) {
-    this.api.getClientById(id)
-      .subscribe((data: any) => {
-        this.client = data;
-        console.log(this.client);
-        this.isLoadingresults = false;
-      });
-  }
+
 
   ngOnInit(): void {
-    this.getclientDetails(this.route.snapshot.params.id);
   }
 
 }

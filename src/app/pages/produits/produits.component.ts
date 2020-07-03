@@ -15,16 +15,21 @@ export class ProduitsComponent implements OnInit {
   produits = [];
   isLoadingResults = true;
   apiservice: any;
-  produit: Produit = { id: null, prix: null, tva: null, description:'',unite: '' , reference: null, designation: '',
-  categorie: '' ,
-  stock: ''};
+  produit: Produit = { id: null, prix: null, tva: null, description:'',unite: '', designation: '',
+  idCategorie: null ,
+  idStock: null };
 
   constructor(private api: ApiService, private router: Router) {}
 
   ngOnInit(): void {
-    this.apiservice.sendGetRequest().subscribe((data: any[])=>{
-      console.log(data);
-      this.produits = data['this.produit'];
+    this.api.getProduit()
+    .subscribe((res: any) => {
+      this.produit = res;
+      console.log(this.produit);
+      this.isLoadingResults = false;
+    }, err => {
+      console.log(err);
+      this.isLoadingResults = false;
     });
   }
   getProduitDetail(id: number){

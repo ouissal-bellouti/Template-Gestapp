@@ -4,11 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
-
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { fakeBackendProvider } from './helpers/fake-backend';
+
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from 'src/app/helpers/error.interceptor';
 
@@ -17,9 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 
-import { ProduitDetailComponent } from 'src/app/pages/produits/produit-detail/produit-detail.component';
-import { ProduitAddComponent } from './pages/produits/produit-add/produit-add.component';
-import { ProduitEditComponent } from 'src/app/pages/produits/produit-edit/produit-edit.component';
+import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 
 import { MatInputModule } from '@angular/material/input';
@@ -35,15 +32,19 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
-import { AddClientComponent } from './pages/clients/add-client/add-client.component';
-import { EditClientComponent } from './pages/clients/edit-client/edit-client.component';
-import { ClientDetailsComponent } from './pages/clients/client-details/client-details.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { AddDevisComponent } from './pages/devis/add-devis/add-devis.component';
+import { AddLignedevisComponent } from './pages/devis/add-lignedevis/add-lignedevis.component';
+import { ListLignedevisComponent } from './pages/devis/list-lignedevis/list-lignedevis.component';
+import { DatePipe } from '@angular/common';
+
 
 
 
 
 @NgModule({
   imports: [
+    BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -66,16 +67,20 @@ import { ClientDetailsComponent } from './pages/clients/client-details/client-de
     MatSlideToggleModule,
     MatButtonToggleModule,
     MatSelectModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    MatTableModule,
   ],
-  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent,
-    ProduitDetailComponent, ProduitAddComponent, ProduitEditComponent, AddClientComponent, EditClientComponent, ClientDetailsComponent],
+  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, AddDevisComponent,
+     AddLignedevisComponent, ListLignedevisComponent,],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-    // provider used to create fake backend
-    fakeBackendProvider
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
+    { provide: DatePipe, useValue:{} }
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {}

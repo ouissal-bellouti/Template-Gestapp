@@ -3,21 +3,19 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header"><h3 class="title">Ajouter un client</h3>
-  <div class="example-loading-shade"
-       *ngIf="isLoadingResults">
-    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-  </div>
         <div class="button-row">
           <a class="title" class="disabled" color="" [routerLink]="['/clients']"><button class="btn btn-danger btn-link">Liste</button></a> / Ajouter
         </div>
       </div>
 
    <div class="card-body">
-     <form [formGroup] ="clientForm" (ngSubmit)="onFormSubmit()">
+     <form [formGroup] ="ClientForm" (ngSubmit)="this[EventValue]">
         <div class="row">
+
           <div class="col-md-4 pr-md-1">
             <div class="form-group">
               <label> Nom </label>
+              <input type="hidden" formControlName="id">
               <input
               class="form-control"
               type="text"
@@ -25,9 +23,9 @@
               placeholder="Nom"
               errorStateMatcher="matcher"
               />
-              <mat-error>
-                <span *ngIf="!clientForm.get('Nom').valid && clientForm.get('Nom').touched">Ce champs est requis</span>
-              </mat-error>
+              <div>
+                <span *ngIf="ClientForm.controls.Nom.errors.required">Ce champs est requis</span>
+            </div>
             </div>
           </div>
 
@@ -40,9 +38,9 @@
               formControlName="Prenom"
               placeholder="Prenom"
               />
-              <mat-error>
-                <span *ngIf="!clientForm.get('Prenom').valid && clientForm.get('Prenom').touched">Ce champs est requis</span>
-              </mat-error>
+              <div>
+                <span  *ngIf="ClientForm.controls.Prenom.errors.required">Ce champs est requis</span>
+              </div>
             </div>
           </div>
 
@@ -55,9 +53,9 @@
               formControlName="Email"
               placeholder="dutti@gmail.com"
               />
-              <mat-error>
-                <span *ngIf="!clientForm.get('Email').valid && clientForm.get('Email').touched">Ce champs est requis</span>
-              </mat-error>
+              <div>
+                <span  *ngIf="ClientForm.controls.Email.errors.required">Ce champs est requis</span>
+              </div>
             </div>
           </div>
         </div>
@@ -72,9 +70,9 @@
               formControlName="Telephone"
               placeholder="0625143678"
               />
-              <mat-error>
-                <span *ngIf="!clientForm.get('Telephone').valid && clientForm.get('Telephone').touched">Ce champs est requis</span>
-              </mat-error>
+              <div>
+                <span  *ngIf="ClientForm.controls.Telephone.errors.required">Ce champs est requis</span>
+              </div>
             </div>
           </div>
 
@@ -85,11 +83,11 @@
               class="form-control"
               type="text"
               formControlName="Adresse"
-              placeholder=""
+              placeholder="rue 17 Nr 07"
               />
-              <mat-error>
-                <span *ngIf="!clientForm.get('Adresse').valid && clientForm.get('Adresse').touched"></span>
-              </mat-error>
+              <div>
+                <span  *ngIf="ClientForm.controls.Adresse.errors.required">Ce chapms est requis</span>
+              </div>
             </div>
           </div>
 
@@ -100,12 +98,12 @@
               class="form-control"
               type="text"
               formControlName="Ville"
-              placeholder=""
+              placeholder="Tanger"
               />
 
-              <mat-error>
-                <span *ngIf="!clientForm.get('Ville').valid && clientForm.get('Ville').touched"></span>
-              </mat-error>
+              <div>
+                <span  *ngIf="ClientForm.controls.Ville.errors.required"></span>
+              </div>
             </div>
           </div>
         </div>
@@ -122,16 +120,16 @@
               placeholder="15090"
               />
 
-              <mat-error>
-                <span *ngIf="!clientForm.get('CodePostale').valid && clientForm.get('CodePostal').touched">Ce champs est requis</span>
-              </mat-error>
+              <div>
+                <span  *ngIf="ClientForm.controls.CodePostale.errors.required">Ce champs est requis</span>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="clearfix"></div>
      <div class=" card-footer">
-    <button class=" btn btn-fill btn-danger" type="submit" [disabled]="!clientForm.valid" > Save </button>
+    <button class=" btn btn-fill btn-danger" type="submit" >{{EventValue}}</button>
        </div>
      </form>
 

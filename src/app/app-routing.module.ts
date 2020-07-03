@@ -12,8 +12,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 const routes: Routes = [
-   { path: '', component:  AdminLayoutComponent, canActivate: [AuthGuard] },
-   { path: 'login', component: AuthLayoutComponent },
+     // { path: '', component:  AdminLayoutComponent, canActivate: [AuthGuard] },
+     // { path: 'login', component: AuthLayoutComponent },
 
     // otherwise go to AdminLayoutcomponent
   {

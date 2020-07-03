@@ -58,10 +58,10 @@ Within the download you'll find the following directories and files:
 │   │       ├── dashboard
 │   │       │   ├── dashboard.component.html
 │   │       │   └── dashboard.component.ts
-│   │       ├── icons
+│   │       ├── Utilisateurs
 │   │       │   ├── icons.component.html
 │   │       │   └── icons.component.ts
-│   │       ├── map
+│   │       ├── Clients
 │   │       │   ├── map.component.html
 │   │       │   └── map.component.ts
 │   │       ├── notifications

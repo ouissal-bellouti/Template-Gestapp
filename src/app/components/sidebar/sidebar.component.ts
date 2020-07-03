@@ -58,8 +58,15 @@ export const ROUTES: RouteInfo[] = [
     class: ''
   },
   {
-    path: '/notifications',
-    title: 'Notifications',
+    path: '',
+    title: 'Parametres',
+    rtlTitle: '',
+    icon: '',
+    class: ''
+  },
+  {
+    path: '/categories',
+    title: 'Categorie des Produits',
     rtlTitle: 'إخطارات',
     icon: 'icon-bell-55',
     class: ''

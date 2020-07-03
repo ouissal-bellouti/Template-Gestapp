@@ -14,10 +14,15 @@ import { ClientsComponent } from '../../pages/clients/clients.component';
 import { DevisComponent } from '../../pages/devis/devis.component';
 import { FactureComponent } from 'src/app/pages/facture/facture.component';
 import { PaiementComponent } from 'src/app/pages/paiement/paiement.component';
+import { CategorieProduitComponent } from 'src/app/pages/categorie-produit/categorie-produit.component';
+
 
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatDialog } from '@angular/material/dialog';
+
+
 
 @NgModule({
   imports: [
@@ -26,6 +31,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     HttpClientModule,
     NgbModule,
+
+
   ],
   declarations: [
     DashboardComponent,
@@ -36,7 +43,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NotificationsComponent,
     MapComponent,
     PaiementComponent,
-    FactureComponent
+    FactureComponent,
+    CategorieProduitComponent
     // RtlComponent
   ]
 })
