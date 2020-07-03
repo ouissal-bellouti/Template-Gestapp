@@ -50,13 +50,23 @@ export class AddDevisComponent implements OnInit {
 
 
     ngOnInit(): void {
-      this.minDate = this.transformDate(new Date(Date.now()));
-      this.annee = parseInt(localStorage.getItem('annee'));
-      this.OnSelectCompteur(this.annee);
-      this.InfoForm();
-      this.f.annee.setValue(2020);
-      this.wdate = this.transformDate(new Date());
-      this.service.list = [];
+      if(this.service.choixmenu ==='A') {
+        this.InfoForm();
+        this.service.list = [];
+        this.wdate = this.transformDate( new Date(Date.now()));
+        this.annee = (this.wdate).toString().substring(0,4);
+        this.f['annee'].setValue(this.annee);
+        this.OnSelectCompteur(this.annee);
+      }
+      else {
+        this.ldservice.getData(this.service.formData.value.id).subscribe(res => {
+          this.service.formData = this.fb.group(Object.assign({},res));
+        });
+        this.ldservice.getAll(this.service.formData.value.id).subscribe(
+          response => {this.service.list= response}
+        );
+        this.f['dateCreation'].setValue(this.service.formData.value.deteCreation);
+      }
     }
 
     OnSelectCompteur(id: number)
@@ -100,7 +110,7 @@ export class AddDevisComponent implements OnInit {
     }
 
 
-onDelete(item : LigneDevis,Id:number,i:number){
+ onDelete(item : LigneDevis,Id:number,i:number){
   if(Id != null)
   this.service.formData.value.id+=Id ;
  this.service.list.splice(i,1);
@@ -129,22 +139,20 @@ onDelete(item : LigneDevis,Id:number,i:number){
   this.isValid =false;
   return this.isValid;
 }
-
-
- OnSelectClient(ctrl)
- {
-    if(ctrl.selectedIndex === 0){
-     this.f.nomClient.setValue('');
-     this.f.clientId.setValue('');
-    }
-    else{
-       this.f.nomClient.setValue(this.ClientList[ctrl.selectedIndex - 1].Nom);
-       this.f.clientId.setValue(this.ClientList[ctrl.selectedIndex - 1].id);
-    }
-  }
+OnSelectClient(ctrl)
+{
+   if(ctrl.selectedIndex === 0){
+    this.f.nomClient.setValue('');
+    this.f.clientId.setValue('');
+   }
+   else{
+      this.f.nomClient.setValue(this.ClientList[ctrl.selectedIndex - 1].Nom);
+      this.f.clientId.setValue(this.ClientList[ctrl.selectedIndex - 1].id);
+   }
+ }
 
   onSubmit(){
-    this.f.ldevis.setValue(this.service.list);
+    this.f['ldevis'].setValue(this.service.list);
       this.service.saveOrUpdate(this.service.formData.value).
       subscribe( data => {
         this.toastr.success( 'Validation Faite avec Success');

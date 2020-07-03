@@ -57,19 +57,20 @@ export class DevisComponent implements OnInit {
 
   newDevis()
   {
-    this.service.choixmenu =1
+    this.service.choixmenu ='A'
   this.router.navigate(['/add-devis']);
   }
 
   onSelect(item :Devis){
+    this.service.choixmenu = 'M'
     this.service.formData = this.fb.group(Object.assign({},item));
-    this.service.choixmenu =0
-    this.router.navigate(['/devis']);
+    this.router.navigate(['/add-devis'])
+
   }
+
   transformDate(date){
     return this.datePipe.transform(date, 'yyyy-MM-dd');
   }
-
 
   getData(){
 this.service.getAll().subscribe(

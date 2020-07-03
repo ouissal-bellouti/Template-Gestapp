@@ -19,7 +19,7 @@ export class LigneDevisService {
 
   constructor(private http:HttpClient,private toastr: ToastrService) { }
 
-  choixmenu = 1;
+
   getData(id: number): Observable<Object> {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
@@ -40,8 +40,8 @@ export class LigneDevisService {
     return this.http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' });
   }
 
-  getAll(): Observable<any> {
-    return this.http.get(`${this.apiUrl}`);
+  getAll(id: number): Observable<Object> {
+    return this.http.get(`${this.apiUrl}/${id}`);
   }
 
 }

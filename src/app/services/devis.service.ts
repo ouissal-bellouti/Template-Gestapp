@@ -16,9 +16,9 @@ export class DevisService {
   constructor(private http:HttpClient,private toastr: ToastrService) { }
 
   readonly apiUrl ='http://localhost:4000/api/Devis';
-  list: LigneDevis[]=[];
+  list: any={};
   public formData: FormGroup;
-  choixmenu = 1;
+  choixmenu : string = 'A';
 
   saveOrUpdate(info: Object) {
     return this.http.post(`${this.apiUrl}`,info);
