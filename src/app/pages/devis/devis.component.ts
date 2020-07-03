@@ -7,13 +7,21 @@ import { DatePipe } from '@angular/common';
 import {MatDialog, MatDialogConfig, MAT_DIALOG_DATA,MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule,Validators }
 from '@angular/forms';
+import { map } from 'rxjs/operators';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+import pdfmake from 'pdfmake/build/pdfmake';
+import { style } from '@angular/animations';
+import { LigneDevis } from '../ligneDevis';
+pdfmake.vfs = pdfFonts.pdfMake.vfs;
+
+
 @Component({
   selector: 'app-devis',
   templateUrl: 'devis.component.html'
 })
 export class DevisComponent implements OnInit {
 
-  devisList;
+  devisList: any;
   SearchText: string;
 
   constructor(
@@ -60,6 +68,125 @@ export class DevisComponent implements OnInit {
   }
   transformDate(date){
     return this.datePipe.transform(date, 'yyyy-MM-dd');
+  }
+
+
+  getData(){
+this.service.getAll().subscribe(
+  response => {this.service.list = response}
+);
+  }
+
+  generatepdf() {
+    const document = this.getDocument();
+    pdfmake.createPdf(document).open();
+  }
+
+  getDocument() {
+    return {
+      content: [
+        [{
+          text: 'InovaSquad',
+          style:'name'
+        },
+        {
+          text: 'Technopark Tanger'
+        },
+        {
+          text: 'Lien : http://www.inovasquad.com/'
+        },
+        {
+          text: 'Contact: Badre El Faiz'
+        },
+        {
+          text: 'Listes Des Devis',
+          bold: true,
+          fontSize:20,
+          alignment:'center',
+          margin:[0,0,0,20]
+        },
+        this.getList(this.service.list),
+        {
+
+        },
+
+        {
+          text:'InovaSquad',
+          style:'sign',
+          alignment:'right'
+        },
+
+        ],
+      ],
+      styles: {
+        header: {
+          fontSize:18,
+          bold: true,
+          margin:[0,20,0,10],
+          decoration: 'underline'
+        },
+        name: {
+          fontSize: 16,
+          bold: true
+        },
+        totale: {
+          fontSize: 12,
+          bold: true,
+          italics: true
+        },
+        ligne: {
+          fontSize:12,
+          bold:true,
+          italics: true,
+        },
+        sign: {
+          margin: [0,50,0,10],
+          alignment:'right',
+          italics: true
+        },
+        tableHeader: {
+          bold: true,
+          fontSize: 15,
+          alighment:'center'
+        }
+
+      }
+    }
+  }
+
+  getList(item: LigneDevis[]) {
+    return {
+      table: {
+        widths: ['*','*','*','*','*'],
+        body: [
+          [
+            {
+              text: 'DATE DE CREATION	',
+              style: 'tableHeader'
+            },
+            {
+              text: 'CLIENT',
+              style: 'tableHeader'
+            },
+            {
+              text: 'DATE DE LIVRAIOSON	',
+              style: 'tableHeader'
+            },
+            {
+              text: 'TOTALE TTC	',
+              style: 'tableHeader'
+            },
+            {
+              text: 'TOTALE HT	',
+              style: 'tableHeader'
+            },
+          ],
+          ...item.map(ed => {
+            return [ed.NomCategorie, ed.Nom, ed.Designation, ed.totHT, ed.totTTC];
+          })
+        ]
+      }
+    };
   }
 
 }
