@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { ProduitsComponent } from '../../pages/produits/produits.component';
-import { MapComponent } from '../../pages/map/map.component';
+
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 import { UtilisateursComponent } from '../../pages/utilisateurs/utilisateurs.component';
 import { ClientsComponent } from '../../pages/clients/clients.component';
@@ -41,7 +41,6 @@ import { MatDialog } from '@angular/material/dialog';
     ProduitsComponent,
     DevisComponent,
     NotificationsComponent,
-    MapComponent,
     PaiementComponent,
     FactureComponent,
     CategorieProduitComponent
