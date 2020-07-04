@@ -55,23 +55,23 @@
 │   │       │   ├── dashboard.component.html
 │   │       │   └── dashboard.component.ts
 │   │       ├── Utilisateurs
-│   │       │   ├── icons.component.html
-│   │       │   └── icons.component.ts
+│   │       │   ├── Utilisateurs.component.html
+│   │       │   └── Utilisateurs.component.ts
 │   │       ├── Clients
-│   │       │   ├── map.component.html
-│   │       │   └── map.component.ts
+│   │       │   ├── Clients.component.html
+│   │       │   └── Clients.component.ts
 │   │       ├── Devis
-│   │       │   ├── notifications.component.html
-│   │       │   └── notifications.component.ts
-│   │       ├── Facture
-│   │       │   ├── rtl.component.html
-│   │       │   └── rtl.component.ts
-│   │       ├── tables
-│   │       │   ├── tables.component.html
-│   │       │   └── tables.component.ts
-│   │       ├── typography
-│   │       │   ├── typography.component.html
-│   │       │   └── typography.component.ts
+│   │       │   ├── Devis.component.html
+│   │       │   └── Devis.component.ts
+│   │       ├── Paiement
+│   │       │   ├── Paiement.component.html
+│   │       │   └── Paiement.component.ts
+│   │       ├── Paiement
+│   │       │   ├── Paiement.component.html
+│   │       │   └── Paiement.component.ts
+│   │       ├── Categorie des produits
+│   │       │   ├── Categorie.component.html
+│   │       │   └── Categorie.component.ts
 │   │       └── user
 │   │           ├── user.component.html
 │   │           └── user.component.ts
