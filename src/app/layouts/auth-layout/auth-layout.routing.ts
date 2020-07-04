@@ -6,5 +6,6 @@ import { from } from 'rxjs';
 
 
 export const AuthLayoutRoutes: Routes = [
+  { path:'rtl', component: RtlComponent }
 
 ];

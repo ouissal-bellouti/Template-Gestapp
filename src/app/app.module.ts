@@ -37,7 +37,7 @@ import { AddDevisComponent } from './pages/devis/add-devis/add-devis.component';
 import { AddLignedevisComponent } from './pages/devis/add-lignedevis/add-lignedevis.component';
 import { ListLignedevisComponent } from './pages/devis/list-lignedevis/list-lignedevis.component';
 import { DatePipe } from '@angular/common';
-
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 
@@ -57,6 +57,7 @@ import { DatePipe } from '@angular/common';
     MatInputModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatGridListModule,
     MatSortModule,
     MatTableModule,
     MatIconModule,

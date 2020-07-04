@@ -20,9 +20,19 @@ export class ClientsComponent implements OnInit {
   constructor(private api: ClientService, private router: Router) {}
 
   ngOnInit(): void {
-    this.getdata();
+    this.api.clients={
+      id:0,
+      Nom: null,
+      Prenom: null,
+      Email:null,
+      Telephone: null,
+      Adresse: null,
+      Ville: null,
+      CodePostal:0
 
-    this.ClientForm = new FormGroup({
+    }
+
+   /*  this.ClientForm = new FormGroup({
       Id: new FormControl(null),
       Nom: new FormControl('',[Validators.required]),
       Prenom: new FormControl('',[Validators.required]),
@@ -32,7 +42,7 @@ export class ClientsComponent implements OnInit {
       Ville: new FormControl('',[Validators.required]),
       CodePostale: new FormControl('',[Validators.required]),
 
-    })
+    }) */
 
   }
   postdata(form: NgForm) {

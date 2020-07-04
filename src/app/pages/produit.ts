@@ -1,4 +1,4 @@
-import { Scategorie } from './scategorie';
+
 import { Categorie } from 'src/app/pages/categorie'
 
 export class Produit {

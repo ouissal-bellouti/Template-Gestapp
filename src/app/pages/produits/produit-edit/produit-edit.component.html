@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header"><h3 class="title">Ajouter un produit</h3>
+        <div class="card-header"><h3 class="title">Modifier un produit</h3>
 
         <div class="button-row">
           <a class="title" class="disabled" color="" [routerLink]="['/produits']"><button class="btn btn-danger btn-link">Liste</button></a> / Modifier
@@ -21,6 +21,8 @@
               formControlName="reference"
               placeholder="Réference"
               errorStateMatcher="matcher"
+              value="PR001"
+              disabled
               />
               <mat-error>
                 <span *ngIf="!produitForm.get('reference').valid && produitForm.get('reference').touched">Ce champs est requis</span>
@@ -36,6 +38,7 @@
               class="form-control"
               formControlName="designation"
               placeholder="Désignation"
+              value="PC Dell core I5"
               />
               <mat-error>
                 <span *ngIf="!produitForm.get('designation').valid && produitForm.get('designation').touched">Ce champs est requis</span>
@@ -50,7 +53,7 @@
               type="number"
               class="form-control"
               formControlName="prix"
-              placeholder="DH"
+              value="4500 DH"
               />
               <mat-error>
                 <span *ngIf="!produitForm.get('prix').valid && produitForm.get('prix').touched">Ce champs est requis</span>
@@ -67,7 +70,8 @@
               class="form-control"
               type="number"
               formControlName="tva"
-              placeholder="DH"
+              placeholder=""
+              value="20"
               />
               <mat-error>
                 <span *ngIf="!produitForm.get('tva').valid && produitForm.get('tva').touched">Ce champs est requis</span>
@@ -111,8 +115,11 @@
                 cols="80"
                 rows="4"
                 type="text"
-                placeholder="Description du produit"
-              s></textarea
+                placeholder=""
+                value=""
+
+
+              ></textarea
               >
               <mat-error>
                 <span *ngIf="!produitForm.get('description').valid && produitForm.get('description').touched">Ce champs est requis</span>
@@ -130,11 +137,14 @@
               <div class="upload-image">
                 <div #image class="image-wrapper"></div>
                 <div class="browse-btn">
-                  <input class="form-control" type="file" name="cameraImg" id="cameraImg" (change)="onSelectedFile($event)" />
+                 <!--  <input class="form-control" type="file" name="cameraImg" id="cameraImg" (change)="onSelectedFile($event)" />
                   <div class="browse-image">
-                    <img src="assets/images/camera.png" width="60px">
+                    <img src="" width="60px" height="30%">
                     <p>Browse Image</p>
-                  </div>
+                  </div> -->
+                    <img src="assets/img/pop.png" width="15%">
+                    <img src="assets/img/dell.jpg" width="15%">
+
                 </div>
               </div>
             </div>

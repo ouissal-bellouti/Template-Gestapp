@@ -1,10 +1,6 @@
 
 ## File Structure
 
-Within the download you'll find the following directories and files:
-
-```
-
 ├── CHANGELOG.md
 ├── documentation
 ├── ISSUE_TEMPLATE.md
@@ -64,10 +60,10 @@ Within the download you'll find the following directories and files:
 │   │       ├── Clients
 │   │       │   ├── map.component.html
 │   │       │   └── map.component.ts
-│   │       ├── notifications
+│   │       ├── Devis
 │   │       │   ├── notifications.component.html
 │   │       │   └── notifications.component.ts
-│   │       ├── rtl
+│   │       ├── Facture
 │   │       │   ├── rtl.component.html
 │   │       │   └── rtl.component.ts
 │   │       ├── tables
@@ -102,13 +98,6 @@ Within the download you'll find the following directories and files:
 ├── tsconfig.json
 └── tslint.json
 
-
-## Reporting Issues
-We use GitHub Issues as the official bug tracker for the black Dashboard Angular. Here are some advices for our users that want to report an issue:
-
-1. Make sure that you are using the latest version of the black Dashboard Angular. Check the CHANGELOG from your dashboard on our [website](https://www.creative-tim.com/).
-2. Providing us reproducible steps for the issue will shorten the time it takes for it to be fixed.
-3. Some issues may be browser specific, so specifying in what browser you encountered the issue might help.
 
 
 

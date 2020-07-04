@@ -1,226 +1,123 @@
-<div class="content" >
-<div class=" row">
-  <div class=" col-lg-12 col-md-12">
-    <div class=" card card-tasks">
-      <div class=" card-header">
-        <h6 class=" title d-inline">Tasks(5)</h6>
-        <p class=" card-category d-inline">today</p>
-        <div ngbDropdown>
-          <button
-            class=" btn btn-link btn-icon"
-            data-toggle="dropdown"
-            ngbDropdownToggle
-            type="button"
-          >
-            <i class=" tim-icons icon-settings-gear-63"> </i>
-          </button>
-          <div
-            aria-labelledby="dropdownMenuLink"
-            class=" dropdown-menu-right"
-            ngbDropdownMenu
-          >
-            <a href="javascript:void(0)" ngbDropdownItem> Action </a>
-            <a href="javascript:void(0)" ngbDropdownItem> Another action </a>
-            <a href="javascript:void(0)" ngbDropdownItem> Something else </a>
-          </div>
+
+<div class=" content">
+  <div class=" row">
+    <div class=" col-md-12">
+      <div class=" card">
+        <div class=" card-header">
+          <h4 class=" card-title">Liste Des Factures</h4>
+
+          <div ngbDropdown>
+            <form  class="form-inline waves-light" mdbWavesEffect>
+              <div class="md-form mt-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+              </div>
+              <button class=" btn btn-inline-dnger" type="button"  ngbTooltip="Ajouter" container="body" >
+                <i class=" tim-icons icon-simple-add"> </i>
+              </button>
+              <button class=" btn btn-inline-dnger" type="button"  ngbTooltip="PDF">
+                <i class=" tim-icons icon-cloud-download-93"> </i>
+              </button>
+            </form>
+
+              <div
+                aria-labelledby="dropdownMenuLink"
+                class=" dropdown-menu-right"
+                ngbDropdownMenu
+              >
+
+              </div>
+
+            </div>
         </div>
-      </div>
-      <div class=" card-body">
-        <div class=" table-full-width table-responsive">
-          <table class=" table">
-            <tbody>
-              <tr>
-                <td>
-                  <div class=" form-check">
-                    <label class=" form-check-label">
-                      <input
-                        class=" form-check-input"
-                        type="checkbox"
-                        value=""
-                      />
-
-                      <span class=" form-check-sign">
-                        <span class=" check"> </span>
-                      </span>
-                    </label>
+        <div class=" card-body">
+          <div class=" table-responsive">
+            <table class=" table tablesorter" id="">
+              <thead class=" text-primary">
+                <tr>
+                  <th>Date DE CREATION</th>
+                  <th>CLIENT</th>
+                  <th>DATE D'EHERANCE</th>
+                  <th>TOTALE TTC</th>
+                  <th>TOTALE HT</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr >
+                  <td> 15/06/2020 </td>
+                  <td> Billy Bill</td>
+                  <td> 25/07/2020 </td>
+                  <td> 4000 Dh</td>
+                  <td> 3800 </td>
+                  <td class="text-center">
+                    <div>
+                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" >
+                      <i class=" tim-icons icon-pencil"> </i>
+                    </button>
+                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete" >
+                      <i class=" tim-icons icon-trash-simple"> </i>
+                    </button>
                   </div>
-                </td>
-                <td>
-                  <p class=" title">Update the Documentation</p>
-                  <p class=" text-muted">
-                    Dwuamish Head, Seattle, WA 8:47 AM
-                  </p>
-                </td>
-                <td class=" td-actions text-right">
-              <div style="width:400;">
-                <div style="float: left; width: 130px">
-                  <button class=" btn btn-link" type="button"  ngbTooltip="Modifier" container="body" >
-                    <i class=" tim-icons icon-pencil"> </i>
-                  </button>
-                  <button class=" btn btn-link" type="button"  ngbTooltip="Supprimer" container="body" >
-                    <i class=" tim-icons icon-pencil"> </i>
-                  </button>
+                  </td>
+                </tr>
+                <tr >
+                  <td> 08/05/2020 </td>
+                  <td> Tawab Berwaki</td>
+                  <td> 15/07/2020 </td>
+                  <td> 8000 Dh</td>
+                  <td> 8500 </td>
+                  <td class="text-center">
+                    <div>
+                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" >
+                      <i class=" tim-icons icon-pencil"> </i>
+                    </button>
+                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete" >
+                      <i class=" tim-icons icon-trash-simple"> </i>
+                    </button>
                   </div>
-                  <div style="float: left; width: 200px">
-                  <button class=" btn btn-link" type="button"  ngbTooltip="Detail" container="body" >
-                    <i class=" tim-icons icon-pencil"> </i>
-                  </button>
-                  <button class=" btn btn-link" type="button"  ngbTooltip="Change mot de pass" container="body" >
-                    <i class=" tim-icons icon-pencil"> </i>
-                  </button>
-                </div>
-                </div>
+                  </td>
+                </tr>
 
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class=" form-check">
-                    <label class=" form-check-label">
-                      <input
-                        checked=""
-                        class=" form-check-input"
-                        type="checkbox"
-                        value=""
-                      />
-
-                      <span class=" form-check-sign">
-                        <span class=" check"> </span>
-                      </span>
-                    </label>
+                <tr >
+                  <td> 26/06/2020 </td>
+                  <td> Ouissal Ballouti</td>
+                  <td> 15/06/2020 </td>
+                  <td> 4000 Dh</td>
+                  <td> 3800 </td>
+                  <td class="text-center">
+                    <div>
+                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" >
+                      <i class=" tim-icons icon-pencil"> </i>
+                    </button>
+                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete" >
+                      <i class=" tim-icons icon-trash-simple"> </i>
+                    </button>
                   </div>
-                </td>
-                <td>
-                  <p class=" title">GDPR Compliance</p>
-                  <p class=" text-muted">
-                    The GDPR is a regulation that requires businesses to
-                    protect the personal data and privacy of Europe citizens
-                    for transactions that occur within EU member states.
-                  </p>
-                </td>
-                <td class=" td-actions text-right">
-                  <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Task" container="body" >
-                    <i class=" tim-icons icon-pencil"> </i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class=" form-check">
-                    <label class=" form-check-label">
-                      <input
-                        class=" form-check-input"
-                        type="checkbox"
-                        value=""
-                      />
+                  </td>
+                </tr>
 
-                      <span class=" form-check-sign">
-                        <span class=" check"> </span>
-                      </span>
-                    </label>
+                <tr >
+                  <td> 30/06/2020 </td>
+                  <td> Doha Ballouti</td>
+                  <td> 15/07/2020 </td>
+                  <td> 4000 Dh</td>
+                  <td> 3800 </td>
+                  <td class="text-center">
+                    <div>
+                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" >
+                      <i class=" tim-icons icon-pencil"> </i>
+                    </button>
+                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete" >
+                      <i class=" tim-icons icon-trash-simple"> </i>
+                    </button>
                   </div>
-                </td>
-                <td>
-                  <p class=" title">Solve the issues</p>
-                  <p class=" text-muted">
-                    Fifty percent of all respondents said they would be more
-                    likely to shop at a company
-                  </p>
-                </td>
-                <td class=" td-actions text-right">
-                  <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Task" container="body" >
-                    <i class=" tim-icons icon-pencil"> </i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class=" form-check">
-                    <label class=" form-check-label">
-                      <input
-                        class=" form-check-input"
-                        type="checkbox"
-                        value=""
-                      />
+                  </td>
+                </tr>
 
-                      <span class=" form-check-sign">
-                        <span class=" check"> </span>
-                      </span>
-                    </label>
-                  </div>
-                </td>
-                <td>
-                  <p class=" title">Release v2.0.0</p>
-                  <p class=" text-muted">
-                    Ra Ave SW, Seattle, WA 98116, SUA 11:19 AM
-                  </p>
-                </td>
-                <td class=" td-actions text-right">
-                  <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Task" container="body"  >
-                    <i class=" tim-icons icon-pencil"> </i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class=" form-check">
-                    <label class=" form-check-label">
-                      <input
-                        class=" form-check-input"
-                        type="checkbox"
-                        value=""
-                      />
 
-                      <span class=" form-check-sign">
-                        <span class=" check"> </span>
-                      </span>
-                    </label>
-                  </div>
-                </td>
-                <td>
-                  <p class=" title">Export the processed files</p>
-                  <p class=" text-muted">
-                    The report also shows that consumers will not easily
-                    forgive a company once a breach exposing their personal
-                    data occurs.
-                  </p>
-                </td>
-                <td class=" td-actions text-right">
-                  <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Task" container="body" >
-                    <i class=" tim-icons icon-pencil"> </i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class=" form-check">
-                    <label class=" form-check-label">
-                      <input
-                        class=" form-check-input"
-                        type="checkbox"
-                        value=""
-                      />
-
-                      <span class=" form-check-sign">
-                        <span class=" check"> </span>
-                      </span>
-                    </label>
-                  </div>
-                </td>
-                <td>
-                  <p class=" title">Arival at export process</p>
-                  <p class=" text-muted">
-                    Capitol Hill, Seattle, WA 12:34 AM
-                  </p>
-                </td>
-                <td class=" td-actions text-right">
-                  <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit Task" container="body" >
-                    <i class=" tim-icons icon-pencil"> </i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ const httpOptions = {
 export class ClientService {
   formdata: Client;
   readonly apiUrl ='http://localhost:4000';
-  clients : Client[];
+  clients : Client;
   choixmenu: String = 'A';
 
   constructor(private http: HttpClient) { }
