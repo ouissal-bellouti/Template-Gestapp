@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from 'src/app/services/client.service';
-import { CompteurService } from 'src/app/services/compteurs.service';
 import { Client } from '../../client';
-import { Compteur } from '../../compteur';
 import { Devis } from '../../devis';
 import { DevisService } from 'src/app/services/devis.service';
 import { LigneDevis } from '../../ligneDevis';
@@ -29,16 +27,13 @@ export class AddDevisComponent implements OnInit {
   ClientList: Client[];
 
   isValid = true;
-  articleService: any;
-  minDate;
-  wdate;
-  compteur : any={};
+  dateCreation;
+  dateLivraison;
   client   : any= {};
   annee  = 0;
 
   constructor(
     public service:DevisService,
-    public cservice:CompteurService,
     public ldservice:LigneDevisService,
     private dialog:MatDialog,public fb: FormBuilder,
     public clientService :ClientService,
@@ -53,8 +48,8 @@ export class AddDevisComponent implements OnInit {
       if(this.service.choixmenu ==='A') {
         this.InfoForm();
         this.service.list = [];
-        this.wdate = this.transformDate( new Date(Date.now()));
-        this.annee = (this.wdate).toString().substring(0,4);
+        this.dateCreation = this.transformDate( new Date(Date.now()));
+        this.annee = (this.dateCreation).toString().substring(0,4);
         this.f['annee'].setValue(this.annee);
       }
       else {

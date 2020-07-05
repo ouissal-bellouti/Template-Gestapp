@@ -39,6 +39,7 @@ import { ListLignedevisComponent } from './pages/devis/list-lignedevis/list-lign
 import { DatePipe } from '@angular/common';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { AddFactureComponent } from './pages/facture/add-facture/add-facture.component';
+import { AddUtilisateurComponent } from './pages/utilisateurs/add-utilisateur/add-utilisateur.component';
 
 
 
@@ -75,7 +76,7 @@ import { AddFactureComponent } from './pages/facture/add-facture/add-facture.com
     MatTableModule
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, AddDevisComponent,
-     AddLignedevisComponent, ListLignedevisComponent, AddFactureComponent,],
+     AddLignedevisComponent, ListLignedevisComponent, AddFactureComponent, AddUtilisateurComponent,],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

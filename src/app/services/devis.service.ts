@@ -14,7 +14,7 @@ export class DevisService {
 
   constructor(private http:HttpClient,private toastr: ToastrService) { }
 
-  readonly apiUrl ='http://localhost:4000/api/Devis';
+  readonly apiUrl ='http://localhost:5000/api/Devis';
   list: any={};
   public formData: FormGroup;
   choixmenu : string = 'A';

@@ -47,4 +47,8 @@ export class FactureService {
       return this.http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' });
     }
 
+    saveOrUpdate(info: Object) {
+      return this.http.post(`${this.apiUrl}`,info);
+    }
+
 }

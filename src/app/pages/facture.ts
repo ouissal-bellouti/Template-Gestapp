@@ -1,13 +1,14 @@
-import { LigneFacture } from 'src/app/pages/lignefacture';
+import { Article } from './article';
+
 export class Facture {
   id : number;
   Statut : any;
   NomClient: string;
   DateGeneration: Date;
   ClientId: number;
-  DateEchence:Date;
+  DateEcheance:Date;
   DevisId:number;
   Produitid:number;
-  lfacture: Array<LigneFacture> = [];
+  Article: Array<Article> = [];
 
 }

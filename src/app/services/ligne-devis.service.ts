@@ -14,7 +14,7 @@ from '@angular/forms';
   providedIn: 'root'
 })
 export class LigneDevisService {
-   readonly apiUrl ='http://localhost:4000/api/Article';
+   readonly apiUrl ='http://localhost:5000/api/Article';
    listldevis : LigneDevis[];
    ldevis: LigneDevis= new LigneDevis();
    public formData: FormGroup;
