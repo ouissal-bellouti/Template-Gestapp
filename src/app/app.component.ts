@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AuthentificationService } from './services/authentification.service';
 import { User } from './pages/user';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+
 
 
 

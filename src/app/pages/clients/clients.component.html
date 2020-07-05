@@ -11,7 +11,7 @@
               <div class="md-form mt-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
               </div>
-              <button class=" btn btn-link" type="button"  ngbTooltip="Ajouter" container="body" routerLink='/add-client' >
+              <button class=" btn btn-link" type="button"  ngbTooltip="Ajouter" container="body" (click)="addclient()" >
                 <i class=" tim-icons icon-simple-add"> </i>
               </button>
             </form>
@@ -42,157 +42,24 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>ouissal</td>
-                  <td>Ballouti</td>
-                  <td>dutti@gmail.com</td>
-                  <td class=" text-left">0623124578</td>
-                  <td> Lot Shaabi Rue 07</td>
-                  <td> Ksar El kebir</td>
-                  <td class="text-center"> 19050 </td>
-                  <td class="text-right">
-                    <div>
-                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Detail" container="body" routerLink="/client-details" >
-                      <i class=" tim-icons icon-components"> </i>
-                    </button>
-                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" routerLink="/edit-client" >
-                      <i class=" tim-icons icon-pencil"> </i>
-                    </button>
-                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete">
-                      <i class=" tim-icons icon-trash-simple"> </i>
-                    </button>
-                  </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Lassiou</td>
-                  <td>duttu</td>
-                  <td>Oud-@gmail.com</td>
-                  <td class=" text-left">0623124578</td>
-                  <td> Tanger Rue 07</td>
-                  <td>Tanger</td>
-                  <td class="text-center">90501</td>
-                  <td class="text-right">
-                    <div>
-                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Detail" container="body" routerLink="/client-details" >
-                      <i class=" tim-icons icon-components"> </i>
-                    </button>
-                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" routerLink="/edit-client" >
-                      <i class=" tim-icons icon-pencil"> </i>
-                    </button>
-                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete">
-                      <i class=" tim-icons icon-trash-simple"> </i>
-                    </button>
-                  </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td> Doha </td>
-                  <td> Khtatba</td>
-                  <td>Doha@gmail.com</td>
-                  <td class=" text-left">0623124578</td>
-                  <td> Al airfane 2 Rue 07</td>
-                  <td>Tanger</td>
-                  <td class="text-center">19045</td>
-                  <td class="text-right">
-                    <div>
-                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Detail" container="body" routerLink="/client-details" >
-                      <i class=" tim-icons icon-components"> </i>
-                    </button>
-                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" routerLink="/edit-client" >
-                      <i class=" tim-icons icon-pencil"> </i>
-                    </button>
-                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete">
-                      <i class=" tim-icons icon-trash-simple"> </i>
-                    </button>
-                  </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Baddr</td>
-                  <td>El Faiz</td>
-                  <td>Oud-@gmail.com</td>
-                  <td class=" text-left">0623124578</td>
-                  <td> thechnopark Rue 07</td>
-                  <td>Tanger</td>
-                  <td class="text-center">12345</td>
-                  <td class="text-right">
-                    <div>
-                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Detail" container="body" routerLink="/client-details" >
-                      <i class=" tim-icons icon-components"> </i>
-                    </button>
-                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" routerLink="/edit-client" >
-                      <i class=" tim-icons icon-pencil"> </i>
-                    </button>
-                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete">
-                      <i class=" tim-icons icon-trash-simple"> </i>
-                    </button>
-                  </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Lassiou</td>
-                  <td>duttu</td>
-                  <td>Oud-@gmail.com</td>
-                  <td class=" text-left">0623124578</td>
-                  <td> Tanger Rue 07</td>
-                  <td>Tanger</td>
-                  <td class="text-center">12345</td>
-                  <td class="text-right">
-                    <div>
-                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Detail" container="body" routerLink="/client-details" >
-                      <i class=" tim-icons icon-components"> </i>
-                    </button>
-                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" routerLink="/edit-client" >
-                      <i class=" tim-icons icon-pencil"> </i>
-                    </button>
-                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete">
-                      <i class=" tim-icons icon-trash-simple"> </i>
-                    </button>
-                  </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Amina</td>
-                  <td>El bourmaki</td>
-                  <td>amina123@gmail.com</td>
-                  <td class=" text-left">0623124578</td>
-                  <td>  Lot nahda Nr 41</td>
-                  <td>Tetouan </td>
-                  <td class="text-center">18045</td>
-                  <td class="text-right">
-                    <div>
-                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Detail" container="body" routerLink="/client-details" >
-                      <i class=" tim-icons icon-components"> </i>
-                    </button>
-                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" routerLink="/edit-client" >
-                      <i class=" tim-icons icon-pencil"> </i>
-                    </button>
-                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete">
-                      <i class=" tim-icons icon-trash-simple"> </i>
-                    </button>
-                  </div>
-                  </td>
-                </tr>
-
-                <tr *ngFor="let client of data" >
-                  <td> {{client.id}} </td>
-                  <td> {{client.Nom}} </td>
-                  <td> {{client.Prenom}} </td>
-                  <td> {{client.Email}} </td>
-                  <td class="text-left"> {{client.Telephone}} </td>
-                  <td> {{client.Adresse}} </td>
-                  <td> {{client.Ville}} </td>
-                  <td class="text-center"> {{client.CodePostale}} </td>
+                <tr *ngFor="let item of listData | async" >
+                  <td> {{item.Id}} </td>
+                  <td> {{item.Nom}} </td>
+                  <td> {{item.Prenom}} </td>
+                  <td> {{item.Email}} </td>
+                  <td class="text-left"> {{item.Telephone}} </td>
+                  <td> {{item.Adresse}} </td>
+                  <td> {{item.Ville}} </td>
+                  <td class="text-center"> {{item.CodePostal}} </td>
                   <td class=" text-right">
                     <div>
-                      <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Detail" container="body" (click)="getdata(client)" >
+                      <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Detail" container="body">
                         <i class=" tim-icons icon-components"> </i>
                       </button>
-                      <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" (click)="EditData(client)" >
+                      <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" >
                         <i class=" tim-icons icon-pencil"> </i>
                       </button>
-                      <button class=" btn btn-link" (click)="deleteData(client.id)" placement="left" ngbTooltip="Delete">
+                      <button class=" btn btn-link"  placement="left" ngbTooltip="Delete">
                         <i class=" tim-icons icon-trash-simple"> </i>
                       </button>
                     </div>

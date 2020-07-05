@@ -75,6 +75,7 @@
     "@ng-bootstrap/ng-bootstrap": "6.0.0",
     "chart.js": "2.8.0",
     "core-js": "3.6.4",
+    "guid-typescript": "^1.0.9",
     "ngx-toastr": "10.0.4",
     "pdfmake": "^0.1.66",
     "perfect-scrollbar": "^1.5.0",

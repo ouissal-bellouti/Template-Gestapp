@@ -3,10 +3,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Devis } from 'src/app/pages/devis';
-import { LigneDevis} from 'src/app/pages/ligneDevis';
 import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule,Validators }
 from '@angular/forms';
-
+import { LigneDevis } from '../pages/ligneDevis';
 @Injectable({
   providedIn: 'root'
 })

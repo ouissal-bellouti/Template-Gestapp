@@ -7,15 +7,17 @@ import { LigneDevis } from 'src/app/pages/ligneDevis';
 import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule,Validators }
 from '@angular/forms';
 
+
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class LigneDevisService {
-   readonly apiUrl ='http://localhost:4000/api/Devis';
-   listldevis: LigneDevis[];
+   readonly apiUrl ='http://localhost:4000/api/Article';
+   listldevis : LigneDevis[];
    ldevis: LigneDevis= new LigneDevis();
    public formData: FormGroup;
-
 
   constructor(private http:HttpClient,private toastr: ToastrService) { }
 

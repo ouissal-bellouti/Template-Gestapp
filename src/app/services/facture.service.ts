@@ -11,7 +11,7 @@ export class FactureService {
 
   constructor(private http:HttpClient,private toastr: ToastrService) { }
 
-  readonly apiUrl ='http://localhost:4000/api/Facture';
+  readonly apiUrl ='http://localhost:5000/api/Facture';
   list: any={};
   public formData: FormGroup;
   choixmenu : string = 'A';

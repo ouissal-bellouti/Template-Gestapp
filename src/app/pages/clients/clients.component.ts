@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { ClientService } from 'src/app/services/client.service';
 import { Client } from '../client';
 import { Router } from '@angular/router';
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { identifierModuleUrl } from '@angular/compiler';
-
+import { ToastrService } from 'ngx-toastr';
+import {MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AddClientComponent } from './add-client/add-client.component';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -12,85 +17,59 @@ import { identifierModuleUrl } from '@angular/compiler';
   templateUrl: 'clients.component.html'
 })
 export class ClientsComponent implements OnInit {
-  data: any;
-  ClientForm: FormGroup;
-  submitted = false;
-  EventValue: any = 'Save';
 
-  constructor(private api: ClientService, private router: Router) {}
+ client: Client;
+ listData: Observable<Client[]>;
+
+  constructor(public api: ClientService, public toastr: ToastrService,
+    private router : Router,public fb: FormBuilder,
+    private matDialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef:MatDialogRef<AddClientComponent>, ) {}
 
   ngOnInit(): void {
-    this.api.clients={
-      id:0,
-      Nom: null,
-      Prenom: null,
-      Email:null,
-      Telephone: null,
-      Adresse: null,
-      Ville: null,
-      CodePostal:0
+
+    this.getData();
 
     }
 
-   /*  this.ClientForm = new FormGroup({
-      Id: new FormControl(null),
-      Nom: new FormControl('',[Validators.required]),
-      Prenom: new FormControl('',[Validators.required]),
-      Email:new FormControl('',[Validators.required]),
-      Telephone: new FormControl('',[Validators.required]),
-      Adresse: new FormControl('',[Validators.required]),
-      Ville: new FormControl('',[Validators.required]),
-      CodePostale: new FormControl('',[Validators.required]),
+    getData() {
+      this.listData = this.api.getAll();
 
-    }) */
-
-  }
-  postdata(form: NgForm) {
-    this.api.postData(this.ClientForm.value).subscribe((data: any) => {
-      this.data = data;
-      this.restForm();
     }
-    )
-  }
-  getdata() {
-    this.api.getData().subscribe((data: any[]) => {
-      this.data = data;
-    })
-  }
-  deleteData(id) {
-    this.api.deleteData(id).subscribe((data: any[]) => {
-      this.data = data;
-      this.getdata();
-    })
+
+    addclient()
+  {
+    this.api.choixmenu = "A";
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width="50%";
+    //dialogConfig.data="gdddd";
+    this.matDialog.open(AddClientComponent, dialogConfig);
   }
 
-  Update() {
-    this.submitted = true;
-
-    if (this.ClientForm.invalid) {
-     return;
-    }
-    this.api.putData(this.ClientForm.value.ClientId,this.ClientForm.value).subscribe((data: any[]) => {
-      this.data = data;
-      this.restForm();
-    })
+  removeData(id: number) {
+    if (window.confirm('Are sure you want to delete this Client ?')) {
+    this.api.deleteData(id)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.toastr.success(' data successfully deleted!');
+          this.getData();
+        },
+        error => console.log(error));
   }
-  EditData(Data) {
-    this.ClientForm.controls.Id.setValue(Data.Id);
-    this.ClientForm.controls.Nom.setValue(Data.Nom);
-    this.ClientForm.controls.Prenom.setValue(Data.Prenom);
-    this.ClientForm.controls.Email.setValue(Data.Email);
-    this.ClientForm.controls.Telephone.setValue(Data.Telephone);
-    this.ClientForm.controls.Adresse.setValue(Data.Adresse);
-    this.ClientForm.controls.Ville.setValue(Data.Ville);
-    this.EventValue = 'Update';
   }
+  selectData(item : Client) {
+    this.api.choixmenu = "M";
+    this.api.dataForm = this.fb.group(Object.assign({},item));
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.width="50%";
 
-  restForm(client?: NgForm) {
-    this.getdata();
-    this.ClientForm.reset();
-    this.EventValue = "Save";
-    this.submitted = false;
+    this.matDialog.open(AddClientComponent, dialogConfig);
   }
 
-}
+  }

@@ -3,6 +3,8 @@ import { ClientService } from 'src/app/services/client.service';
 import { Router } from '@angular/router';
 import { FormControl, FormBuilder, FormGroupDirective, FormGroup,NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { ToastrService } from 'ngx-toastr';
+import { Client } from '../../client';
 
 
 
@@ -13,50 +15,63 @@ import { ErrorStateMatcher } from '@angular/material/core';
 })
 export class AddClientComponent implements OnInit {
 
+  constructor(public api: ClientService, private router: Router,public fb: FormBuilder,
+     public toastr: ToastrService) { }
 
-  data: any;
-  ClientForm: FormGroup;
-  submitted = false;
-  EventValue: any = 'Save';
+  ngOnInit() {
+    if (this.api.choixmenu=="A")
+    {this.infoForm()};
 
+}
+infoForm() {
+  this.api.dataForm = this.fb.group({
+    Id: null,
+    Nom: ['', [Validators.required]],
+    Prenom: ['', [Validators.required]],
+    Email: ['', [Validators.required, Validators.minLength(5)]],
+    Telephone: ['', [Validators.required, Validators.minLength(8)]],
+    Adress: ['', [Validators.required, Validators.minLength(10)]],
+    Ville: ['', [Validators.required, Validators.minLength(8)]],
+    CodePostal: ['', [Validators.required, Validators.minLength(8)]],})
+}
 
+Resetform() {
+  this.api.dataForm.reset();
+}
 
-  constructor(private api: ClientService, private router: Router,) { }
+onSubmit() {
+  if (this.api.choixmenu == "A")
+  {
+    this.addData();
+  }
+  else
+  {
 
-  ngOnInit(): void {
-
-    this.ClientForm = new FormGroup({
-      Id: new FormControl(null),
-      Nom: new FormControl('',[Validators.required]),
-      Prenom: new FormControl('',[Validators.required]),
-      Email:new FormControl('',[Validators.required]),
-      Telephone: new FormControl('',[Validators.required]),
-      Address: new FormControl('',[Validators.required]),
-      Ville: new FormControl('',[Validators.required]),
-      Codepostale: new FormControl('',[Validators.required]),
-    })
+   this.updateData()
+  }
 
 }
 
-Save() {
-  this.submitted = true;
-  if (this.ClientForm.invalid) {
-    return;
-  }
-  this.api.postData(this.ClientForm.value).subscribe((data: any[]) =>
-  {
-    this.data = data;
-    this.restForm();
-
+addData() {
+  this.api.createData(this.api.dataForm.value).
+  subscribe( data => {
+    this.toastr.success('Validation Faite avec Success');
+    this.router.navigate(['/clients'])
   })
 }
 
-restForm() {
+updateData()
+  {
 
-  this.ClientForm.reset();
-  this.EventValue = 'Save';
-  this.submitted = false;
-}
+    this.api.updateData(this.api.dataForm.value.id,this.api.dataForm.value).
+    subscribe( data => {
+      this.toastr.success( 'Modification Faite avec Success');
+
+      this.router.navigate(['/clients']);
+    });
+  }
+
+
 
 
 }

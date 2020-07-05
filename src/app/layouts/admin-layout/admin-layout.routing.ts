@@ -19,7 +19,6 @@ import { ProduitDetailComponent } from 'src/app/pages/produits/produit-detail/pr
 
 import { ClientsComponent } from '../../pages/clients/clients.component';
 import { AddClientComponent } from 'src/app/pages/clients/add-client/add-client.component';
-import { EditClientComponent } from 'src/app/pages/clients/edit-client/edit-client.component';
 import { ClientDetailsComponent } from 'src/app/pages/clients/client-details/client-details.component';
 import { CategorieProduitComponent } from 'src/app/pages/categorie-produit/categorie-produit.component';
 import { AddDevisComponent } from 'src/app/pages/devis/add-devis/add-devis.component';
@@ -43,7 +42,6 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'produit-edit', component: ProduitEditComponent},
   { path: 'produit-detail', component: ProduitDetailComponent},
   { path: 'add-client', component: AddClientComponent},
-  { path: 'edit-client', component: EditClientComponent},
   { path: 'client-details', component: ClientDetailsComponent},
   { path: 'categories', component: CategorieProduitComponent},
   { path: 'add-devis', component: AddDevisComponent}

@@ -10,7 +10,7 @@ import { MatDialogConfig } from '@angular/material/dialog';
   providedIn: 'root'
 })
 export class CategorieService {
-  readonly apiUrl ='http://localhost:4000';
+  readonly apiUrl ='http://localhost:5000';
   categories : Categorie[];
   listData= Categorie;
   public dataForm: FormGroup;
@@ -25,20 +25,20 @@ export class CategorieService {
 
 
   getData(id : number){
-    return this.http.get(`${this.apiUrl}/api/Categories/${id}`);
+    return this.http.get(`${this.apiUrl}/api/Categorie/${id}`);
   }
 
   postData(info: Object): Observable<Object>{
-    return this.http.post(`${this.apiUrl}/api/Categories`,info);
+    return this.http.post(`${this.apiUrl}/api/Categorie`,info);
   }
 
   putData(id: number, value: any): Observable<Object>{
-    return this.http.put(`${this.apiUrl}/api/Categories/${id}`,value);
+    return this.http.put(`${this.apiUrl}/api/Categorie/${id}`,value);
   }
   deleteData(id: number): Observable<any>{
-    return this.http.delete(`${this.apiUrl}/api/Categories/${id}`, { responseType:'text'});
+    return this.http.delete(`${this.apiUrl}/api/Categorie/${id}`, { responseType:'text'});
 }
  getAll(): Observable<any>{
-  return this.http.get(`${this.apiUrl}/api/Categories`);
+  return this.http.get(`${this.apiUrl}/api/Categorie`);
 }
 }

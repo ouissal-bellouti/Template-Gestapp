@@ -1,4 +1,4 @@
-<div class="content">
+
   <div class="row">
     <div class="col-md-12">
       <div class="card">
@@ -9,23 +9,17 @@
       </div>
 
    <div class="card-body">
-     <form [formGroup] ="ClientForm" (ngSubmit)="this[EventValue]">
+     <form [formGroup] ="ClientForm" (ngSubmit)="onSubmit()">
         <div class="row">
 
           <div class="col-md-4 pr-md-1">
             <div class="form-group">
               <label> Nom </label>
-              <input type="hidden" formControlName="id">
-              <input
-              class="form-control"
-              type="text"
-              formControlName="Nom"
-              placeholder="Nom"
-              errorStateMatcher="matcher"
+              <input class="form-control" type="text" formControlName="Nom" placeholder="Nom"  errorStateMatcher="matcher"
               />
               <div>
-                <span *ngIf="ClientForm.controls.Nom.errors.required">Ce champs est requis</span>
-            </div>
+                <span  *ngIf="dataForm.controls.Prenom.errors.required">Ce champs est requis</span>
+              </div>
             </div>
           </div>
 
@@ -39,7 +33,7 @@
               placeholder="Prenom"
               />
               <div>
-                <span  *ngIf="ClientForm.controls.Prenom.errors.required">Ce champs est requis</span>
+                <span  *ngIf="dataForm.controls.Prenom.errors.required">Ce champs est requis</span>
               </div>
             </div>
           </div>
@@ -54,7 +48,7 @@
               placeholder="dutti@gmail.com"
               />
               <div>
-                <span  *ngIf="ClientForm.controls.Email.errors.required">Ce champs est requis</span>
+                <span  *ngIf="dataForm.controls.Prenom.errors.required">Ce champs est requis</span>
               </div>
             </div>
           </div>
@@ -71,7 +65,7 @@
               placeholder="0625143678"
               />
               <div>
-                <span  *ngIf="ClientForm.controls.Telephone.errors.required">Ce champs est requis</span>
+                <span  *ngIf="dataForm.controls.Prenom.errors.required">Ce champs est requis</span>
               </div>
             </div>
           </div>
@@ -86,7 +80,7 @@
               placeholder="rue 17 Nr 07"
               />
               <div>
-                <span  *ngIf="ClientForm.controls.Adresse.errors.required">Ce chapms est requis</span>
+                <span  *ngIf="dataForm.controls.Prenom.errors.required">Ce champs est requis</span>
               </div>
             </div>
           </div>
@@ -102,7 +96,7 @@
               />
 
               <div>
-                <span  *ngIf="ClientForm.controls.Ville.errors.required"></span>
+                <span  *ngIf="dataForm.controls.Prenom.errors.required">Ce champs est requis</span>
               </div>
             </div>
           </div>
@@ -112,16 +106,15 @@
           <div class=" col-md-4 pr-md-1">
             <div class=" form-group">
 
-              <label> Code Postale </label>
+              <label> Code Postal </label>
               <input
               class="form-control"
               type="text"
               formControlName="CodePostal"
               placeholder="15090"
               />
-
               <div>
-                <span  *ngIf="ClientForm.controls.CodePostale.errors.required">Ce champs est requis</span>
+                <span  *ngIf="dataForm.controls.Prenom.errors.required">Ce champs est requis</span>
               </div>
             </div>
           </div>
@@ -129,15 +122,14 @@
 
         <div class="clearfix"></div>
      <div class=" card-footer">
-    <button class=" btn btn-fill btn-danger" type="submit" >{{EventValue}}</button>
+    <button class=" btn btn-fill btn-danger" type="submit" >Save</button>
        </div>
      </form>
 
    </div>
 
-
+    </div>
     </div>
 
-  </div>
-</div>
+
 

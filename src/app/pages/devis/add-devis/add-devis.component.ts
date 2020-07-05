@@ -56,7 +56,6 @@ export class AddDevisComponent implements OnInit {
         this.wdate = this.transformDate( new Date(Date.now()));
         this.annee = (this.wdate).toString().substring(0,4);
         this.f['annee'].setValue(this.annee);
-        this.OnSelectCompteur(this.annee);
       }
       else {
         this.ldservice.getData(this.service.formData.value.id).subscribe(res => {
@@ -69,15 +68,8 @@ export class AddDevisComponent implements OnInit {
       }
     }
 
-    OnSelectCompteur(id: number)
- {
-  this.cservice.getData(id).subscribe(
-    response =>{
-      this.compteur = response;
-      this.f.numero.setValue(2020000 + this.compteur.RefDevis);
-      }
-   );
- }
+
+
     transformDate(date){
       return this.datePipe.transform(date, 'yyyy-MM-dd');
     }
@@ -147,7 +139,7 @@ OnSelectClient(ctrl)
    }
    else{
       this.f.nomClient.setValue(this.ClientList[ctrl.selectedIndex - 1].Nom);
-      this.f.clientId.setValue(this.ClientList[ctrl.selectedIndex - 1].id);
+      this.f.clientId.setValue(this.ClientList[ctrl.selectedIndex - 1].Id);
    }
  }
 
