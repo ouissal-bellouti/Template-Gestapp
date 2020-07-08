@@ -14,14 +14,14 @@ export class FactureService {
   readonly apiUrl ='http://localhost:5000/api/Facture';
   list: any={};
   public formData: FormGroup;
-  choixmenu : string = 'A';
+  choixmenu = 'A';
 
 
-  getData(id: number): Observable<Object> {
-    return this.http.get(`${this.apiUrl}/${id}`);
+  getData(Id: string): Observable<object> {
+    return this.http.get(`${this.apiUrl}/${Id}`);
   }
 
-  save(info: Object){
+  save(info: object){
    alert('gfgfgf');
     const body ={
       ...info,
@@ -30,24 +30,24 @@ export class FactureService {
     return this.http.post(`${this.apiUrl}`, body);
 
   }
-    updatedata(id: number, value: any): Observable<Object> {
-      return this.http.put(`${this.apiUrl}/${id}`, value);
+    updatedata(Id: string, value: any): Observable<object> {
+      return this.http.put(`${this.apiUrl}/${Id}`, value);
     }
 
-    deleteData(id: number): Observable<any> {
-      return this.http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' });
+    deleteData(Id: string): Observable<any> {
+      return this.http.delete(`${this.apiUrl}/${Id}`, { responseType: 'text' });
     }
 
     getAll(): Observable<any> {
       return this.http.get(`${this.apiUrl}`);
     }
 
-    deleteAll(id: number): Observable<any> {
+    deleteAll(Id: string): Observable<any> {
 
-      return this.http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' });
+      return this.http.delete(`${this.apiUrl}/${Id}`, { responseType: 'text' });
     }
 
-    saveOrUpdate(info: Object) {
+    saveOrUpdate(info: object) {
       return this.http.post(`${this.apiUrl}`,info);
     }
 

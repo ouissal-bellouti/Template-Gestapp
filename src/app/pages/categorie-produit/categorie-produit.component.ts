@@ -1,9 +1,7 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { DatePipe } from '@angular/common';
 import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AddCatgComponent } from './addCatg/addCatg.component';
@@ -16,7 +14,6 @@ import { Categorie } from '../categorie';
 })
 export class CategorieProduitComponent implements OnInit {
   categorie: Categorie;
-  control: FormControl = new FormControl('');
 
   constructor(public api: CategorieService,
     public toaster: ToastrService, private router: Router,
@@ -28,6 +25,7 @@ export class CategorieProduitComponent implements OnInit {
   ngOnInit(): void {
     this.getData();
   }
+
   getData() {
     this.api.getAll().subscribe(
       response => {this.api.listData = response;}
@@ -41,9 +39,9 @@ export class CategorieProduitComponent implements OnInit {
     this.matDialog.open(AddCatgComponent, dialogConfig);
   }
 
-  removeData(id: number) {
+  removeData(Id: string) {
     if (window.confirm('Are sure you want to delete this Categorie ?')) {
-    this.api.deleteData(id)
+    this.api.deleteData(Id)
       .subscribe(
         data => {
           console.log(data);
@@ -53,6 +51,7 @@ export class CategorieProduitComponent implements OnInit {
         error => console.log(error));
   }
   }
+
   selectData(item : Categorie) {
     this.api.choixmenu = 'M';
     this.api.dataForm = this.fb.group(Object.assign({},item));
@@ -64,6 +63,8 @@ export class CategorieProduitComponent implements OnInit {
     this.matDialog.open(AddCatgComponent, dialogConfig);
   }
 
+  }
 
-}
+
+
 

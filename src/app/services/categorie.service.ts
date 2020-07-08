@@ -3,40 +3,39 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Categorie } from '../pages/categorie';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatDialogConfig } from '@angular/material/dialog';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategorieService {
-  readonly apiUrl ='http://localhost:5000';
-  categories : Categorie[];
-  listData= Categorie;
+  listData:Categorie[];
   public dataForm: FormGroup;
   choixmenu = 'A';
 
   constructor(private http: HttpClient) { }
-  httpOptions = {
+  apiUrl ='http://localhost:5000';
+
+  headers= {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'content-Type': 'application/json'
     })
   }
 
 
-  getData(id : number){
-    return this.http.get(`${this.apiUrl}/api/Categorie/${id}`);
+  getData(Id : string){
+    return this.http.get(`${this.apiUrl}/api/Categorie/${Id}`);
   }
 
-  postData(info: Object): Observable<Object>{
-    return this.http.post(`${this.apiUrl}/api/Categorie`,info);
+  postData(info: Categorie): Observable<Categorie>{
+    return this.http.post<Categorie>(`${this.apiUrl}/api/Categorie`,info, this.headers).pipe();
   }
 
-  putData(id: number, value: any): Observable<Object>{
-    return this.http.put(`${this.apiUrl}/api/Categorie/${id}`,value);
+  putData(Id: string, value: any): Observable<object>{
+    return this.http.put(`${this.apiUrl}/api/Categorie/${Id}`,value);
   }
-  deleteData(id: number): Observable<any>{
-    return this.http.delete(`${this.apiUrl}/api/Categorie/${id}`, { responseType:'text'});
+  deleteData(Id: string): Observable<any>{
+    return this.http.delete(`${this.apiUrl}/api/Categorie/${Id}`, { responseType:'text'});
 }
  getAll(): Observable<any>{
   return this.http.get(`${this.apiUrl}/api/Categorie`);

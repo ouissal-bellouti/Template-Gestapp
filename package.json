@@ -77,10 +77,12 @@
     "core-js": "3.6.4",
     "guid-typescript": "^1.0.9",
     "ngx-toastr": "10.0.4",
+    "parse": "^2.14.0",
     "pdfmake": "^0.1.66",
     "perfect-scrollbar": "^1.5.0",
     "rxjs": "6.5.2",
     "tslib": "1.10.0",
+    "uuid": "^8.2.0",
     "zone.js": "0.10.2"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
-import { Utilisateur } from '../utilisateurs';
+import { Utilisateur } from '../utilisateur';
 import { Router } from '@angular/router';
 import { NgForm, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { identifierModuleUrl } from '@angular/compiler';
@@ -20,56 +20,56 @@ export class UtilisateursComponent implements OnInit {
   utilisateurs: Utilisateur;
 
   listData: Observable<Utilisateur[]>;
+  utilisateur: Utilisateur;
 
 
-  constructor(public api: UtilisateurService, public toastr: ToastrService,
+  constructor(public api: UtilisateurService,
+     public toaster: ToastrService,
     private router : Router,public fb: FormBuilder,
     private matDialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef:MatDialogRef<AddUtilisateurComponent>, ) {}
 
   ngOnInit(): void {
-
     this.getData();
+  }
 
-    }
-
-    getData() {
-      this.listData = this.api.getAll();
-
-    }
-
-    addutilisateur()
-  {
-    this.api.choixmenu = "A";
+  addUtilisateur() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
-    dialogConfig.width="50%";
-    //dialogConfig.data="gdddd";
+    dialogConfig.width = '50%';
     this.matDialog.open(AddUtilisateurComponent, dialogConfig);
   }
 
-  removeData(Id: number) {
-    if (window.confirm('Est ce que vous sur de vouloir supprimer cet utilisateur?')) {
+  removeData(Id: string) {
+    if (window.confirm('Are sure you want to delete this Categorie ?')) {
     this.api.deleteData(Id)
       .subscribe(
         data => {
           console.log(data);
-          this.toastr.success(' data successfully deleted!');
+          this.toaster.warning('data succefully deleted!');
           this.getData();
         },
         error => console.log(error));
   }
   }
+
+  getData() {
+    this.api.getAll().subscribe(
+      response => {this.api.listData = response;}
+    );
+  }
+
   selectData(item : Utilisateur) {
-    this.api.choixmenu = "M";
+    this.api.choixmenu = 'M';
     this.api.dataForm = this.fb.group(Object.assign({},item));
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
-    dialogConfig.width="50%";
+    dialogConfig.width='50%';
 
     this.matDialog.open(AddUtilisateurComponent, dialogConfig);
   }
+
  }

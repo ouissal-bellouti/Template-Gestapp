@@ -1,6 +1,6 @@
 export class Categorie {
-  id: number;
-  codeCategorie: number;
-  nom: string;
+  Id: string;
+  Code: number;
+  Nom: string;
 
 }

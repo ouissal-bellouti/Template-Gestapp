@@ -16,26 +16,27 @@ const httpOptions = {
 })
 export class ClientService {
 
-  public apiUrl ='http://localhost:5000/api/Client';
-  choixmenu: String = 'A';
+  private apiUrl ='http://localhost:5000';
+  choixmenu = 'A';
+  listData: Client[];
   public dataForm : FormGroup;
 
   constructor(private http: HttpClient) { }
 
-  getData(Id: number): Observable<Object>{
-    return this.http.get(`${this.apiUrl}/${Id}`)
+  getData(Id: string): Observable<object>{
+    return this.http.get(`${this.apiUrl}/api/Client/${Id}`)
   }
-  createData(info) : Observable<Object>{
-    return this.http.post(`${this.apiUrl}`,info);
+  postData(info) : Observable<object>{
+    return this.http.post(`${this.apiUrl}/api/Client/`,info);
   }
-  updateData(id: number, value:any):  Observable<Object>{
-    return this.http.put(`${this.apiUrl}/${id}`,value);
+  putData(Id: string, value:any):  Observable<object>{
+    return this.http.put(`${this.apiUrl}/api/Client//${Id}`,value);
   }
-  deleteData(id: number): Observable<any>{
-    return this.http.delete(`${this.apiUrl}${id}`);
+  deleteData(Id: string): Observable<any>{
+    return this.http.delete(`${this.apiUrl}/api/Client/${Id}`);
   }
-  public getAll():Observable<any> {
-    return this.http.get(`${this.apiUrl}`);
+ getAll():Observable<any> {
+    return this.http.get(`${this.apiUrl}/api/Client/`);
   }
 
 }

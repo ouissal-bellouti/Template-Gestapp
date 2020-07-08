@@ -1,10 +1,10 @@
 export class Utilisateur {
-  Id: number;
+  Id: string;
   Nom: string;
   Prenom: string;
   UserName: string;
   Telephone: string;
   Adresse: string;
   Type: string;
-  Password;
+  Password:string;
 }

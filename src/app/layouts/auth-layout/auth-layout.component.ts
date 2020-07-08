@@ -35,8 +35,8 @@ export class AuthLayoutComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      UserName: ['', Validators.required],
+      Password: ['', Validators.required]
   });
 
   // get return url from route parameters or default to '/'
@@ -56,7 +56,7 @@ export class AuthLayoutComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authentificationService.login(this.f.username.value, this.f.password.value)
+    this.authentificationService.login(this.f.UserName.value, this.f.Password.value)
         .pipe(first())
         .subscribe(
             data => {

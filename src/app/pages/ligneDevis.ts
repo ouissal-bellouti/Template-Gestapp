@@ -1,5 +1,5 @@
 export class LigneDevis {
-  id: number;
+  Id: string ;
   Nom: string;
   NomCategorie: string;
   IdCategorie: number;

@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ClientService } from 'src/app/services/client.service';
 import { Router } from '@angular/router';
-import { FormControl, FormBuilder, FormGroupDirective, FormGroup,NgForm, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { FormControl, FormBuilder, FormGroupDirective, FormGroup,NgForm, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ToastrService } from 'ngx-toastr';
 import { Client } from '../../client';
-
-
+import { ClientsComponent } from '../clients.component';
 
 @Component({
   selector: 'app-add-client',
@@ -14,33 +14,41 @@ import { Client } from '../../client';
   styleUrls: ['./add-client.component.scss']
 })
 export class AddClientComponent implements OnInit {
+  listData:FormGroup;
+  dataForm:FormGroup;
 
-  constructor(public api: ClientService, private router: Router,public fb: FormBuilder,
-     public toastr: ToastrService) { }
+  constructor(public api: ClientService ,
+    public fb: FormBuilder,
+    public toastr: ToastrService,
+    private matDialog: MatDialog,
+    private router : Router,@Inject(MAT_DIALOG_DATA)
+    public data,
+    public dialogRef:MatDialogRef<AddClientComponent>
+     ) { }
 
   ngOnInit() {
-    if (this.api.choixmenu=="A")
+    if (this.api.choixmenu==='A')
     {this.infoForm()};
-
 }
+
 infoForm() {
   this.api.dataForm = this.fb.group({
     Id: null,
     Nom: ['', [Validators.required]],
     Prenom: ['', [Validators.required]],
-    Email: ['', [Validators.required, Validators.minLength(5)]],
-    Telephone: ['', [Validators.required, Validators.minLength(8)]],
-    Adress: ['', [Validators.required, Validators.minLength(10)]],
-    Ville: ['', [Validators.required, Validators.minLength(8)]],
-    CodePostal: ['', [Validators.required, Validators.minLength(8)]],})
+    Email: ['', [Validators.required, Validators]],
+    Telephone: ['', [Validators.required, Validators]],
+    Adresse: ['', [Validators.required, Validators]],
+    Ville: ['', [Validators.required, Validators]],
+    CodePostal: ['', [Validators.required, Validators]]
+  })
 }
 
-Resetform() {
-  this.api.dataForm.reset();
-}
+
 
 onSubmit() {
-  if (this.api.choixmenu == "A")
+
+  if (this.api.choixmenu === 'A')
   {
     this.addData();
   }
@@ -49,29 +57,34 @@ onSubmit() {
 
    this.updateData()
   }
-
 }
+
 
 addData() {
-  this.api.createData(this.api.dataForm.value).
+  this.api.postData(this.api.dataForm.value).
   subscribe( data => {
-    this.toastr.success('Validation Faite avec Success');
-    this.router.navigate(['/clients'])
-  })
+    this.dialogRef.close();
+
+    this.api.getAll().subscribe(
+      response =>{this.api.listData = response;}
+     );
+    this.router.navigate(['/clients']);
+  });
 }
 
+
 updateData()
-  {
+{
+  this.api.putData(this.api.dataForm.value.Id,this.api.dataForm.value).
+  subscribe( data => {
+    this.dialogRef.close();
 
-    this.api.updateData(this.api.dataForm.value.id,this.api.dataForm.value).
-    subscribe( data => {
-      this.toastr.success( 'Modification Faite avec Success');
-
-      this.router.navigate(['/clients']);
-    });
-  }
-
-
+    this.api.getAll().subscribe(
+      response =>{this.api.listData = response;}
+     );
+    this.router.navigate(['/clients']);
+  });
+}
 
 
 }

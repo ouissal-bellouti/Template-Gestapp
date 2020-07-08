@@ -39,118 +39,20 @@
               </thead>
               <tbody>
 
-
-
-                <tr>
-                  <td>Technologie</td>
-                  <td>Tec00</td>
+                <tr *ngFor="let item of api.listData | async" >
+                  <td class="hidden"> {{item.Id}} </td>
+                  <td>  {{item.Code}} </td>
+                  <td> {{item.Nom}} </td>
                   <td>
                     <div>
-                      <button class=" btn btn-link" type="button" ngbTooltip="Edit" container="body" (click)="selectData(categorie)" >
-                        <i class=" tim-icons icon-pencil"> </i>
-                      </button>
-                    </div>
-                  </td>
-                  <td>
-                    <div>
-                      <button class=" btn btn-link" type="button" container="body" (click)="removeData()" ngbTooltip="Delete">
-                        <i class=" tim-icons icon-trash-simple"> </i>
-                      </button>
-                    </div>
-                  </td>
-
-                  <tr>
-                    <td>Meuble</td>
-                    <td>Me00</td>
-                    <td>
-                      <div>
-                        <button class=" btn btn-link" type="button" ngbTooltip="Edit" container="body" (click)="selectData(categorie)" >
-                          <i class=" tim-icons icon-pencil"> </i>
-                        </button>
-                      </div>
-                    </td>
-                    <td>
-                      <div>
-                        <button class=" btn btn-link" type="button" container="body" (click)="removeData()" ngbTooltip="Delete">
-                          <i class=" tim-icons icon-trash-simple"> </i>
-                        </button>
-                      </div>
-                    </td>
-
-
-                    <tr>
-                      <td>Decoration</td>
-                      <td>Dec00</td>
-                      <td>
-                        <div>
-                          <button class=" btn btn-link" type="button" ngbTooltip="Edit" container="body" (click)="selectData(categorie)" >
-                            <i class=" tim-icons icon-pencil"> </i>
-                          </button>
-                        </div>
-                      </td>
-                      <td>
-                        <div>
-                          <button class=" btn btn-link" type="button" container="body" (click)="removeData()" ngbTooltip="Delete">
-                            <i class=" tim-icons icon-trash-simple"> </i>
-                          </button>
-                        </div>
-                      </td>
-
-
-                      <tr>
-                        <td>Peinture</td>
-                        <td>Pe00</td>
-                        <td>
-                          <div>
-                            <button class=" btn btn-link" type="button" ngbTooltip="Edit" container="body" (click)="selectData(categorie)" >
-                              <i class=" tim-icons icon-pencil"> </i>
-                            </button>
-                          </div>
-                        </td>
-                        <td>
-                          <div>
-                            <button class=" btn btn-link" type="button" container="body" (click)="removeData()" ngbTooltip="Delete">
-                              <i class=" tim-icons icon-trash-simple"> </i>
-                            </button>
-                          </div>
-                        </td>
-
-
-                        <tr>
-                          <td>Pièce auto</td>
-                          <td>Pa00</td>
-                          <td>
-                            <div>
-                              <button class=" btn btn-link" type="button" ngbTooltip="Edit" container="body" (click)="selectData(categorie)" >
-                                <i class=" tim-icons icon-pencil"> </i>
-                              </button>
-                            </div>
-                          </td>
-                          <td>
-                            <div>
-                              <button class=" btn btn-link" type="button" container="body" (click)="removeData()" ngbTooltip="Delete">
-                                <i class=" tim-icons icon-trash-simple"> </i>
-                              </button>
-                            </div>
-                          </td>
-
-
-
-                </tr>
-                <tr *ngFor="let Categorie of data" >
-                  <td class="hidden"> {{Categorie.id}} </td>
-                  <td>  {{Categorie.codeCategorie}} </td>
-                  <td> {{Categorie.Nom}} </td>
-                  <td>
-                    <div>
-                      <button class=" btn btn-link" type="button" ngbTooltip="Edit" container="body" (click)="selectData(categorie)" >
+                      <button class=" btn btn-link" type="button" ngbTooltip="Edit" container="body" (click)="selectData(item)" >
                         <i class=" tim-icons icon-pencil"> </i>
                       </button>
                     </div>
                   </td>
                   <td class=" text-right">
                     <div>
-                      <button class=" btn btn-link" type="button" container="body" (click)="removeData(Categorie.id)" ngbTooltip="Delete">
+                      <button class=" btn btn-link" type="button" container="body" (click)="removeData(item.Id)" ngbTooltip="Delete">
                         <i class=" tim-icons icon-trash-simple"> </i>
                       </button>
                     </div>

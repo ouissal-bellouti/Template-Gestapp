@@ -1,21 +1,21 @@
-<h1 class="dislay-4">Commande </h1>
+<h1 class="dislay-4">Article</h1>
 <hr>
-<form [formGroup]="this.formData"  (ngSubmit)="onSubmit()">
-    <input type="hidden" class="form-control" formControlName="id" id="id">
-    <input type="hidden" class="form-control" formControlName="libart" id="libart">
+<form [formGroup]="this.formData">
+    <input type="hidden" class="form-control" formControlName="id" id="Id">
+
 
     <div class="form-group">
         <label>Article </label>
         <select  class="form-control" formControlName="code_article" id="code_article"
-         (change)="selectPrice($event.target)">
+         >
             <option value="0">-Select-</option>
-            <option *ngFor="let item of produitList" value="{{item.id}}">{{item.idCategorie}}</option>
+            <option></option>
        </select>
     </div>
     <div class="form-group">
     <label>Prix HT </label>
     <div class="input-group">
-          <input class="form-control" formControlName="pu" id="pu" (keyup)="cal()"
+          <input class="form-control" formControlName="pu" id="pu"
           [class.is-invalid]="!isValid && formData.value.pu==0" >
     </div>
     </div>
@@ -23,7 +23,7 @@
     <div class="form-group">
        <label>Quantité</label>
       <div class="input-group">
-        <input name="Quantite"  class="form-control" formControlName="Quantite" id="Quantite" (keyup)="cal()"
+        <input name="Quantite"  class="form-control" formControlName="Quantite" id="Quantite"
         [class.is-invalid]="!isValid && formData.value.Quantite==0">
       </div>
     </div>
@@ -31,7 +31,7 @@
     <div class="form-group">
       <label>Désignation</label>
      <div class="input-group">
-       <input name="Designation"  class="form-control" formControlName="Designation" id="Designation" (keyup)="cal()"
+       <input name="Designation"  class="form-control" formControlName="Designation" id="Designation"
        [class.is-invalid]="!isValid && formData.value.Designation==0">
      </div>
    </div>
@@ -59,3 +59,4 @@
     </div>
 
 </form>
+

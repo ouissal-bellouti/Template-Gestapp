@@ -1,14 +1,15 @@
 import { Article } from './article';
+import { Guid } from 'guid-typescript';
+import { Client } from './client';
+import { Devis } from './devis';
 
 export class Facture {
-  id : number;
+  Id : string;
   Statut : any;
-  NomClient: string;
+  Client: Client;
   DateGeneration: Date;
   ClientId: number;
-  DateEcheance:Date;
-  DevisId:number;
-  Produitid:number;
-  Article: Array<Article> = [];
+  DateEcheance: Date;
+  Devis: Array<Devis>;
 
 }

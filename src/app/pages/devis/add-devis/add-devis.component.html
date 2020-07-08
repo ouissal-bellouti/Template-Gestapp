@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-header"><h3 class="title">Ajouter un Devis</h3>
         <div class="button-row">
-          <a class="title" class="disabled" color="" [routerLink]="['/devis']"><button class="btn btn-danger btn-link">Liste</button></a> / Ajouter
+          <a class="title" class="disabled" color="" routerLink="'/devis'"><button class="btn btn-danger btn-link">Liste</button></a> / Ajouter
         </div>
       </div>
 
@@ -14,13 +14,13 @@
           <input type="hidden" class="form-control" formControlName="nomClient" id="nomClient">
           <div class="col-md-4 pr-md-1">
             <div class="form-group">
-              <label> <strong> Ref Devis : </strong> </label>
-              <input type="hidden" formControlName="id">
+              <label> <strong> Ref Devis </strong> </label>
+              <input type="hidden" formControlName="Id">
               <input
               class="form-control"
               type="text"
               formControlName="numero"
-              id="numero"
+              Id="string"
               readonly
               />
             </div>
@@ -32,8 +32,8 @@
               <input
               type="date"
               class="form-control"
-              formControlName="dateCreation"
-              placeholder="dateCreation"
+              formControlName="DateLivraison"
+              placeholder="DateLivraison"
               />
             </div>
           </div>
@@ -49,7 +49,7 @@
               (change)="OnSelectClient($event)"
               >
               <option value="0">-Select-</option>
-              <option *ngFor="let client of this.ClientList" value=" {{client.Id}} "> {{client.Nom}} </option>
+              <option *ngFor="let client of this.ClientList" value=" {{Client.Id}} "> {{Client.Nom}} </option>
               </select>
             </div>
           </div>
@@ -64,15 +64,14 @@
               <th>  TVA  </th>
               <th>  Totale TTC  </th>
               <th>
-                <button   class="btn btn-sm- btn-dark text-light" (click)="AddData(null,1)">
+                <button   class="btn btn-sm- btn-dark text-light" (click)="AddData(Id,'A')">
                 <i class=" tim-icons icon-simple-add"> </i>
 
               </button>
             </th>
             </thead>
             <tbody>
-              <tr *ngIf="service.list.length==0"
-                [class.text-danger]="!isValid && service.list.length==0">
+              <tr >
                 <td>
                   Aucune Article sélectionnée...
                 </td>
@@ -81,14 +80,14 @@
                 <td> {{item.Designation}} </td>
                 <td> {{item.Quantite}} </td>
                 <td> {{item.prixHT}} </td>
-                <td> {{item.totHT}} </td>
                 <td> {{item.TVA}} </td>
-                <td> {{item.totTTC}} </td>
+                <td> {{item.PrixTTC}} </td>
+                <td> {{item.PrixTTC}} </td>
                 <td>
-                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" (click)="AddData(i,1)">
+                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" (click)="AddData(i,'M')">
                       <i class=" tim-icons icon-pencil"> </i>
                     </button>
-                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete"  (click)="onDelete(item,item.id,i)">
+                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete" (click)="onDelete(item, item.Id,i)">
                       <i class=" tim-icons icon-trash-simple"> </i>
                     </button>
                 </td>
@@ -99,7 +98,7 @@
             <div class="col-sm-4 mb-3 mb-sm-0">
               <div class="form-group">
                   <label>Total Ht : </label>
-                  <input type="text" class="form-control" id="totHT" formControlName="totHT" readonly>
+                  <input type="text" class="form-control" id="PrixHT" formControlName="PrixHT" readonly>
               </div>
               </div>
               <div class="col-sm-4 mb-3 mb-sm-0">
@@ -111,7 +110,7 @@
               <div class="col-sm-4 mb-3 mb-sm-0">
               <div class="form-group">
               <label>Total TTC : </label>
-              <input type="text" class="form-control" id="totTTC" formControlName="totTTC" readonly>
+              <input type="text" class="form-control" id="totTTC" formControlName="PrixTTC" readonly>
               </div>
               </div>
           </div>

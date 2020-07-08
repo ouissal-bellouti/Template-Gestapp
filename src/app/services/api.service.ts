@@ -20,7 +20,7 @@ const httpOptions = {
 })
 export class ApiService {
   environment: any;
-  choixmenu : string  = 'A';
+  choixmenu = 'A';
   listData : Produit[];
   public dataForm:  FormGroup;
 
@@ -51,20 +51,21 @@ export class ApiService {
     return this.http.get(`${this.environment.apiUrl}`);
   }
 
-  getProduitById(id: number): Observable<Object> {
-    return this.http.get(`${this.environment.apiUrl}/${id}`);
+
+  getProduitById(Id: string): Observable<object> {
+    return this.http.get(`${this.environment.apiUrl}/${Id}`);
   }
 
   addProduit(formData: FormData): Observable<any> {
     return this.http.post(`${this.environment.apiUrl}`, formData);
   }
 
-  updateProduit(id: number, value: any): Observable<any> {
-    return this.http.put(`${this.environment.apiUrl}/${id}`, value);
+  updateProduit(Id: string, value: any): Observable<any> {
+    return this.http.put(`${this.environment.apiUrl}/${Id}`, value);
   }
 
-  deleteProduit(id: number): Observable<any> {
-    return this.http.delete(`${this.environment.apiUrl}/${id}`, { responseType: 'text' });
+  deleteProduit(Id: string): Observable<any> {
+    return this.http.delete(`${this.environment.apiUrl}/${Id}`, { responseType: 'text' });
   }
 
 

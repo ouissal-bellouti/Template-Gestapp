@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { UtilisateurService } from 'src/app/services/utilisateur.service'
 import { FormControl, FormBuilder, FormGroupDirective, FormGroup,NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ToastrService } from 'ngx-toastr';
-import { Utilisateur } from '../../utilisateurs';
+import { Utilisateur } from '../../utilisateur';
 import { Router } from '@angular/router';
-
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -13,62 +13,72 @@ import { Router } from '@angular/router';
     templateUrl: './add-utilisateur.component.html',
     styleUrls: ['./add-utilisateur.component.scss']
   })
+
 export class AddUtilisateurComponent implements OnInit {
 
-    constructor(public api: UtilisateurService, private router: Router,public fb: FormBuilder,
-       public toastr: ToastrService) { }
+    constructor(public api: UtilisateurService, public fb: FormBuilder,
+      public toastr: ToastrService,
+    private matDialog: MatDialog,
+    private router : Router,@Inject(MAT_DIALOG_DATA)
+    public data,
+    public dialogRef:MatDialogRef<AddUtilisateurComponent>
+      ) { }
 
     ngOnInit() {
-      if (this.api.choixmenu=="A")
-      {this.infoForm()};
+      if (this.api.choixmenu==='A')
+    {this.infoForm()};
 
-  }
-  infoForm() {
-    this.api.dataForm = this.fb.group({
-
-      Id: null,
-      Nom: ['', [Validators.required]],
-      Prenom: ['', [Validators.required]],
-      UserName: ['', [Validators.required, Validators.minLength(5)]],
-      Telephone: ['', [Validators.required, Validators.minLength(8)]],
-      Adresse: ['', [Validators.required, Validators.minLength(10)]],
-      Type: ['', [Validators.required, Validators.minLength(8)]],
-      Password: ['', [Validators.required, Validators.minLength(8)]],})
     }
 
-  Resetform() {
-    this.api.dataForm.reset();
-  }
 
-  onSubmit() {
-    if (this.api.choixmenu == "A")
-    {
-      this.addData();
+    infoForm() {
+      this.api.dataForm = this.fb.group({
+        Id: null,
+        Nom: ['', [Validators.required]],
+        Prenom: ['', [Validators.required]],
+        UserName: ['', [Validators.required, Validators]],
+        Telephone: ['', [Validators.required, Validators]],
+        Adresse: ['', [Validators.required, Validators]],
+        Type: ['', [Validators.required]],
+        Password: ['', [Validators.required, Validators]],})
+      }
+
+    onSubmit() {
+
+      if (this.api.choixmenu === 'A')
+      {
+        this.addData();
+      }
+      else
+      {
+
+       this.updateData()
+      }
     }
-    else
-    {
 
-     this.updateData()
-    }
-  }
-
-  addData() {
-    this.api.createData(this.api.dataForm.value).
-    subscribe( data => {
-      this.toastr.success('Validation Faite avec Success');
-      this.router.navigate(['/utilisateurs'])
-    })
-  }
-
-  updateData()
-    {
-
-      this.api.updateData(this.api.dataForm.value.id,this.api.dataForm.value).
+    addData() {
+      this.api.postData(this.api.dataForm.value).
       subscribe( data => {
-        this.toastr.success( 'Modification Faite avec Success');
+        this.dialogRef.close();
 
+        this.api.getAll().subscribe(
+          response =>{this.api.listData = response;}
+         );
         this.router.navigate(['/utilisateurs']);
       });
     }
 
+    updateData()
+{
+  this.api.putData(this.api.dataForm.value.Id,this.api.dataForm.value).
+  subscribe( data => {
+    this.dialogRef.close();
+
+    this.api.getAll().subscribe(
+      response =>{this.api.listData = response;}
+     );
+    this.router.navigate(['/utilisateurs']);
+  });
+}
   }
+

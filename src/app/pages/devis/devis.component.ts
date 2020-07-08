@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DevisService } from 'src/app/services/devis.service';
 import { Devis } from 'src/app/pages/devis';
@@ -12,7 +12,12 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 import pdfmake from 'pdfmake/build/pdfmake';
 import { style } from '@angular/animations';
 import { LigneDevis } from '../ligneDevis';
+import { ClientService } from 'src/app/services/client.service';
+import { ArticleService } from 'src/app/services/article.service';
+import { Client } from '../client';
+import { Article } from '../article';
 pdfmake.vfs = pdfFonts.pdfMake.vfs;
+
 
 
 @Component({
@@ -21,67 +26,78 @@ pdfmake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class DevisComponent implements OnInit {
 
+
+
   devisList: any;
   SearchText: string;
 
   constructor(
-    private service :DevisService,private router:Router,
-    private toastr :ToastrService,public fb: FormBuilder,
-    private datePipe : DatePipe
-  ) {}
+    private service :DevisService, private router:Router,
+    private toastr :ToastrService, public fb: FormBuilder,
+    private datePipe : DatePipe,
+    public clientService: ClientService,
+    public serviceArticle: ArticleService,
+    private currentRoute: ActivatedRoute,) {}
+    get f() { return this.service.formData.controls }
 
-  ngOnInit() {
-    this.refreshListe();
+  ngOnInit(): void {
+    this.refreshList();
   }
 
-  refreshListe(){
+  refreshList(){
     this.service.getAll().subscribe(
-      response =>{this.devisList = response;}
-     );
-
+      response => {this.devisList = response;}
+    );
   }
 
-  onDelete(id: number) {
-
-    if (window.confirm('Are sure you want to delete this Article ?')) {
-      this.service.deleteAll(id)
-        .subscribe(
-          data => {
-            console.log(data);
-            this.toastr.warning(' data successfully deleted!');
-            this.refreshListe();
-          },
-          error => console.log(error));
+  onDelete(Id: string){
+    if (window.confirm('Are sure you want to delete this Article ?')){
+      this.service.deleteAll(Id).subscribe(
+        data => {
+          console.log(data);
+          this.toastr.warning('data succefully deleted!');
+          this.refreshList();
+        },
+        error => console.log(error));
     }
   }
 
-  newDevis()
-  {
-    this.service.choixmenu ='A'
-  this.router.navigate(['/add-devis']);
+
+  newDevis(){
+    this.service.choixmenu='A'
+    this.router.navigate(['/add-devis']);
   }
 
-  onSelect(item :Devis){
-    this.service.choixmenu = 'M'
-    this.service.formData = this.fb.group(Object.assign({},item));
-    this.router.navigate(['/add-devis'])
 
-  }
+  onSubmit(){
+    this.f['article'].setValue(this.service.list);
+      this.service.saveOrUpdate(this.service.formData.value).
+      subscribe( data => {
+        this.toastr.success( 'Validation Faite avec Success');
+        this.router.navigate(['/devis']);
+      });
+   }
+   getData(){
+     this.service.getAll().subscribe(
+       Response => {this.service.list = Response}
+     );
+   }
 
-  transformDate(date){
-    return this.datePipe.transform(date, 'yyyy-MM-dd');
-  }
+   onSelect(item: Devis){
+     this.service.choixmenu = 'M';
+     this.service.formData = this.fb.group(Object.assign({},item));
+     this.router.navigate(['/add-devis'])
+   }
 
-  getData(){
-this.service.getAll().subscribe(
-  response => {this.service.list = response}
-);
-  }
+   generatepdf() {
+     const document = this.getDocument();
+     pdfmake.createPdf(document).open();
+   }
 
-  generatepdf() {
-    const document = this.getDocument();
-    pdfmake.createPdf(document).open();
-  }
+   transformDate(date){
+     return this.datePipe.transform(date, 'yyyy/MM/dd')
+   }
+
 
   getDocument() {
     return {
@@ -155,14 +171,14 @@ this.service.getAll().subscribe(
     }
   }
 
-  getList(item: LigneDevis[]) {
+  getList(item: Devis[]) {
     return {
       table: {
         widths: ['*','*','*','*','*'],
         body: [
           [
             {
-              text: 'DATE DE CREATION	',
+              text: 'Reference',
               style: 'tableHeader'
             },
             {
@@ -170,20 +186,20 @@ this.service.getAll().subscribe(
               style: 'tableHeader'
             },
             {
-              text: 'DATE DE LIVRAIOSON	',
+              text: 'Article',
               style: 'tableHeader'
             },
             {
-              text: 'TOTALE TTC	',
+              text: 'Prix Totale',
               style: 'tableHeader'
             },
             {
-              text: 'TOTALE HT	',
+              text: 'Date De Creation',
               style: 'tableHeader'
             },
           ],
           ...item.map(ed => {
-            return [ed.NomCategorie, ed.Nom, ed.Designation, ed.totHT, ed.totTTC];
+            return [ed.Id, ed.Client, ed.Article, ed.PrixTotal, ,ed.DateLivraison];
           })
         ]
       }

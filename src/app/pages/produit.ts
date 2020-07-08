@@ -1,14 +1,11 @@
 
 import { Categorie } from 'src/app/pages/categorie'
+import { Guid } from 'guid-typescript';
+import { Stock } from './stock';
 
 export class Produit {
-  id: number;
-  prix: number;
-  tva: number;
-  description: string;
-  unite: string;
-  designation: string;
-  idCategorie: number;
-  idStock: number;
-
+  Id: string;
+  Categorie: Categorie;
+  Image: HTMLImageElement;
+  Stock: Stock;
 }

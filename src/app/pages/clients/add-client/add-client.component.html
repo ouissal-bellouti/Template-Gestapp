@@ -1,135 +1,49 @@
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header"><h3 class="title">Ajouter un client</h3>
-        <div class="button-row">
-          <a class="title" class="disabled" color="" [routerLink]="['/clients']"><button class="btn btn-danger btn-link">Liste</button></a> / Ajouter
-        </div>
-      </div>
-
-   <div class="card-body">
-     <form [formGroup] ="ClientForm" (ngSubmit)="onSubmit()">
-        <div class="row">
-
-          <div class="col-md-4 pr-md-1">
-            <div class="form-group">
-              <label> Nom </label>
-              <input class="form-control" type="text" formControlName="Nom" placeholder="Nom"  errorStateMatcher="matcher"
-              />
-              <div>
-                <span  *ngIf="dataForm.controls.Prenom.errors.required">Ce champs est requis</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 pr-md-1">
-            <div class="form-group">
-              <label> Prenom </label>
-              <input
-              type="text"
-              class="form-control"
-              formControlName="Prenom"
-              placeholder="Prenom"
-              />
-              <div>
-                <span  *ngIf="dataForm.controls.Prenom.errors.required">Ce champs est requis</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 pr-md-1">
-            <div class="form-group">
-              <label> Email </label>
-              <input
-              type="email"
-              class="form-control"
-              formControlName="Email"
-              placeholder="dutti@gmail.com"
-              />
-              <div>
-                <span  *ngIf="dataForm.controls.Prenom.errors.required">Ce champs est requis</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-4 pr-md-1">
-            <div class="form-group">
-              <label> Telephone </label>
-              <input
-              class="form-control"
-              type="text"
-              formControlName="Telephone"
-              placeholder="0625143678"
-              />
-              <div>
-                <span  *ngIf="dataForm.controls.Prenom.errors.required">Ce champs est requis</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 pr-md-1">
-            <div class="form-group">
-              <label > Adresse </label>
-              <input
-              class="form-control"
-              type="text"
-              formControlName="Adresse"
-              placeholder="rue 17 Nr 07"
-              />
-              <div>
-                <span  *ngIf="dataForm.controls.Prenom.errors.required">Ce champs est requis</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 pr-md-1">
-            <div class="form-group">
-              <label > Ville </label>
-              <input
-              class="form-control"
-              type="text"
-              formControlName="Ville"
-              placeholder="Tanger"
-              />
-
-              <div>
-                <span  *ngIf="dataForm.controls.Prenom.errors.required">Ce champs est requis</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class=" row">
-          <div class=" col-md-4 pr-md-1">
-            <div class=" form-group">
-
-              <label> Code Postal </label>
-              <input
-              class="form-control"
-              type="text"
-              formControlName="CodePostal"
-              placeholder="15090"
-              />
-              <div>
-                <span  *ngIf="dataForm.controls.Prenom.errors.required">Ce champs est requis</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="clearfix"></div>
-     <div class=" card-footer">
-    <button class=" btn btn-fill btn-danger" type="submit" >Save</button>
-       </div>
-     </form>
-
-   </div>
+<div class="col-md-12" class="dark">
+  <h1>Client</h1>
+  <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+    <input type="hidden" formControlName="Id" id="Id">
+    <div class="form-group">
+      <label>Nom </label>
+      <input type="text" class="form-control" formControlName="Nom" id="Nom">
 
     </div>
+    <div class="form-group">
+      <label>Prenom</label>
+      <input type="text" class="form-control" formControlName="Prenom" id="Prenom">
+
     </div>
+    <div class="form-group">
+      <label>Email </label>
+      <input type="text" class="form-control" formControlName="Email" id="Email">
+
+    </div>
+    <div class="form-group">
+      <label>Telephone</label>
+      <input type="text" class="form-control" formControlName="Telephone" id="Telephone">
+
+    </div>
+    <div class="form-group">
+      <label>Adresse</label>
+      <input type="text" class="form-control" formControlName="Adresse" id="Adresse">
+
+    </div>
+    <div class="form-group">
+      <label>Ville </label>
+      <input type="text" class="form-control" formControlName="Ville" id="Ville">
+
+    </div>
+    <div class="form-group">
+      <label>CodePostal</label>
+      <input type="text" class="form-control" formControlName="CodePostal" id="CodePostal">
+
+    </div>
+    <div class="form-group">
+
+      <button type="submit" class="btn btn-danger"><i class="fa fa-database"></i> Submit</button>
+      <button type="close" class="btn btn-outline-danger ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
 
 
-
+     </div>
+  </form>
+</div>

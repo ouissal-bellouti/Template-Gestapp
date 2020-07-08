@@ -9,6 +9,7 @@ import { CategorieService } from 'src/app/services/categorie.service';
 import { CategorieProduitComponent } from 'src/app/pages/categorie-produit/categorie-produit.component'
 
 
+
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'app-addCatg',
@@ -16,6 +17,8 @@ import { CategorieProduitComponent } from 'src/app/pages/categorie-produit/categ
   styleUrls: ['./addCatg.component.css']
 })
 export class AddCatgComponent implements OnInit {
+
+  listData:FormGroup;
 
   constructor(public api: CategorieService ,public fb: FormBuilder,public toastr: ToastrService, private matDialog: MatDialog,
     private router : Router,@Inject(MAT_DIALOG_DATA)  public data,
@@ -25,16 +28,18 @@ export class AddCatgComponent implements OnInit {
     if (this.api.choixmenu === 'A')
     {this.infoForm()};
   }
-  infoForm() {
-    this.api.dataForm = this.fb.group({
-      id: null,
-      code: ['',[Validators.required]],
-      nom: ['',[Validators.required]]
-    });
-  }
+
   ResetForm() {
     this.api.dataForm.reset();
 }
+infoForm() {
+  this.api.dataForm = this.fb.group({
+    Id: null,
+    Code: ['',[Validators.required]],
+    Nom: ['',[Validators.required]]
+  });
+}
+
 onSubmit() {
 
   if (this.api.choixmenu === 'A')
@@ -46,8 +51,8 @@ onSubmit() {
 
    this.updateData()
   }
-
 }
+
 addData() {
   this.api.postData(this.api.dataForm.value).
   subscribe( data => {
@@ -59,17 +64,20 @@ addData() {
     this.router.navigate(['/categories']);
   });
 }
-  updateData()
-  {
-    this.api.putData(this.api.dataForm.value.id,this.api.dataForm.value).
-    subscribe( data => {
-      this.dialogRef.close();
 
-      this.api.getAll().subscribe(
-        response =>{this.api.listData = response;}
-       );
-      this.router.navigate(['/categories']);
-    });
-  }
+
+updateData()
+{
+  this.api.putData(this.api.dataForm.value.Id,this.api.dataForm.value).
+  subscribe( data => {
+    this.dialogRef.close();
+
+    this.api.getAll().subscribe(
+      response =>{this.api.listData = response;}
+     );
+    this.router.navigate(['/categories']);
+  });
+}
+
 
 }

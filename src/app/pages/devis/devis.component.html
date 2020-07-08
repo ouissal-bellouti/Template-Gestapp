@@ -11,7 +11,7 @@
               <div class="md-form mt-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
               </div>
-              <button class=" btn btn-inline-dnger" type="button"  ngbTooltip="Ajouter" container="body" (click)="newDevis()" >
+              <button class=" btn btn-inline-dnger" type="button"  ngbTooltip="Ajouter" container="body" (click)="newDevis()">
                 <i class=" tim-icons icon-simple-add"> </i>
               </button>
               <button class=" btn btn-inline-dnger" type="button"  ngbTooltip="PDF" (click)="generatepdf()">
@@ -36,44 +36,24 @@
                 <tr>
                   <th>Date DE CREATION</th>
                   <th>CLIENT</th>
-                  <th>DATE DE LIVRAIOSON</th>
                   <th>TOTALE TTC</th>
                   <th>TOTALE HT</th>
                   <th class="text-center">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <tr >
-
-                  <td> 1 </td>
-                  <td>  2</td>
-                  <td>  3</td>
-                  <td> 40</td>
-                  <td> 5</td>
-                  <td class="text-center">
-                    <div>
-                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" (click)="onSelect()">
-                      <i class=" tim-icons icon-pencil"> </i>
-                    </button>
-                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete" (click)="onDelete()">
-                      <i class=" tim-icons icon-trash-simple"> </i>
-                    </button>
-                  </div>
-                  </td>
-                </tr>
                 <tr *ngFor="let devis of devisList">
-                  <td class="hidden"> {{devis.id}} </td>
-                  <td> {{devis.dateCreation | date:'dd/MM/yyyy'}} </td>
-                  <td> {{devis.nomClient}} </td>
+                  <td class="hidden"> </td>
                   <td> {{devis.dateLivraison | date:'dd/MM/yyyy'}} </td>
-                  <td> {{devis.totTTC}} </td>
-                  <td class=" text-left"> {{devis.totHT}} </td>
+                  <td> {{devis.Client}} </td>
+                  <td> {{devis.Artcle}} </td>
+                  <td> {{devis.PrixTotal}} </td>
                   <td class="text-center">
                     <div>
                     <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" (click)="onSelect(devis)">
                       <i class=" tim-icons icon-pencil"> </i>
                     </button>
-                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete" (click)="onDelete(devis.id)">
+                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete" (click)="onDelete()">
                       <i class=" tim-icons icon-trash-simple"> </i>
                     </button>
                   </div>

@@ -1,8 +1,8 @@
+import { Guid } from 'guid-typescript';
+
 export class User {
-  id: number;
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
+  Id: string;
+  Username: string;
+  Password: string;
   token?: string;
 }

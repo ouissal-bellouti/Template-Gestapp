@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
-import { Utilisateur } from '../pages/utilisateurs';
-import { environment } from 'src/environments/environment'
+import { Utilisateur } from '../pages/utilisateur';
+import { environment } from 'src/environments/environment';
 import { FormGroup } from '@angular/forms';
 
 
@@ -18,26 +18,26 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UtilisateurService {
-  public apiUrl ='http://localhost:5000/api/Utilisateurs';
-  choixmenu: String = 'A';
+  public apiUrl ='http://localhost:5000';
+  choixmenu= 'A';
   public dataForm: FormGroup;
-
+  listData: Utilisateur[];
   constructor(private http: HttpClient) { }
 
-  getData(Id: number): Observable<Object>{
-    return this.http.get(`${this.apiUrl}/${Id}`)
+  getData(Id: string): Observable<object>{
+    return this.http.get(`${this.apiUrl}/api/Utilisateurs/${Id}`)
   }
-  createData(info) : Observable<Object>{
-    return this.http.post(`${this.apiUrl}`,info);
+  postData(info) : Observable<object>{
+    return this.http.post(`${this.apiUrl}/api/Utilisateurs`,info);
   }
-  updateData(Id: number, value:any):  Observable<Object>{
-    return this.http.put(`${this.apiUrl}/${Id}`,value);
+  putData(Id: string, value:any):  Observable<object>{
+    return this.http.put(`${this.apiUrl}/api/Utilisateurs/${Id}`,value);
   }
-  deleteData(Id: number): Observable<any>{
-    return this.http.delete(`${this.apiUrl}${Id}`);
+  deleteData(Id: string): Observable<any>{
+    return this.http.delete(`${this.apiUrl}/api/Utilisateurs/${Id}`);
   }
   public getAll():Observable<any> {
-    return this.http.get(`${this.apiUrl}`);
+    return this.http.get(`${this.apiUrl}/api/Utilisateurs`);
   }
 
 }

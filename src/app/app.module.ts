@@ -33,14 +33,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserModule } from '@angular/platform-browser';
-import { AddDevisComponent } from './pages/devis/add-devis/add-devis.component';
-import { AddLignedevisComponent } from './pages/devis/add-lignedevis/add-lignedevis.component';
-import { ListLignedevisComponent } from './pages/devis/list-lignedevis/list-lignedevis.component';
-import { DatePipe } from '@angular/common';
-import {MatGridListModule} from '@angular/material/grid-list';
-import { AddFactureComponent } from './pages/facture/add-facture/add-facture.component';
-import { AddUtilisateurComponent } from './pages/utilisateurs/add-utilisateur/add-utilisateur.component';
 
+import { DatePipe } from '@angular/common';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 
@@ -73,10 +68,10 @@ import { AddUtilisateurComponent } from './pages/utilisateurs/add-utilisateur/ad
     MatSelectModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MatTableModule,
+
   ],
-  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, AddDevisComponent,
-     AddLignedevisComponent, ListLignedevisComponent, AddFactureComponent, AddUtilisateurComponent,],
+  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
