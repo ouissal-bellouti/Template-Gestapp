@@ -77,7 +77,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: [] },
-    { provide: DatePipe, useValue:{} }
+    { provide: DatePipe}
   ],
 
   bootstrap: [AppComponent]

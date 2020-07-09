@@ -49,8 +49,8 @@ export class DevisService {
       return this.http.delete(`${this.apiUrl}/${Id}`, { responseType: 'text' });
     }
 
-    getAll(): Observable<any> {
-      return this.http.get(`${this.apiUrl}`);
+    getAll(): Observable<Devis> {
+      return this.http.get<Devis>(`${this.apiUrl}`).pipe();
     }
 
     deleteAll(Id: string): Observable<any> {

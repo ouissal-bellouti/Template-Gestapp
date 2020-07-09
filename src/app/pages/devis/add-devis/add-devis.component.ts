@@ -29,7 +29,6 @@ export class AddDevisComponent implements OnInit {
   ClientList: Client[];
   ArticleList: Array<Article>;
   isValid:true;
-  ToastrService: ToastrService;
   DateLivraison;
   annee=0;
   client : any={};
@@ -68,7 +67,7 @@ export class AddDevisComponent implements OnInit {
     }
 
    transformDate(date){
-      return this.datepipe.transform(date, 'yyyy-MM-dd');
+      return this.datepipe.transform(this.DateLivraison, 'yyyy-MM-dd');
     }
 
     InfoForm() {
@@ -78,7 +77,7 @@ export class AddDevisComponent implements OnInit {
         NomClient:'',
         ClientId:'',
         totTTC: 0,
-        article:[],
+        article:'',
       });
     }
 
@@ -111,13 +110,12 @@ export class AddDevisComponent implements OnInit {
     }
 
 
-
     onSubmit(){
       this.f[''].setValue(this.service.list);
         this.service.saveOrUpdate(this.service.formData.value).
         subscribe( data => {
           this.toastr.success( 'Validation Faite avec Success');
-          this.router.navigate(['/lcomm']);
+          this.router.navigate(['/article']);
         });
      }
 

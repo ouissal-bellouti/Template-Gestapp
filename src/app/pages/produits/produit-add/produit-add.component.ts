@@ -20,11 +20,36 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class ProduitAddComponent implements OnInit {
 
+  produitForm: FormGroup;
 
   constructor(private router: Router, private api: ApiService, private formBuilder: FormBuilder, private renderer: Renderer2) { }
 
   ngOnInit(): void {
+
   }
+
+
+
+  deleteProductImage(filename, a) {
+    const formData = new FormData();
+    formData.append('filename', filename);
+    this.api.deleteImage(formData).subscribe(
+      res => {
+        a.parentElement.remove();
+      }
+    );
+  }
+
+ onFormsubmit() {
+      this.api.addProduit(this.produitForm.value)
+        .subscribe((res: any) => {
+          const id = res.id;
+          this.router.navigate(['/produit-detail', id]);
+        }, (err: any) => {
+          console.log(err);
+         });
+    }
+
 
 
 }

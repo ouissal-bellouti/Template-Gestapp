@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup } from '@angular/forms';
+import { Facture } from '../pages/facture';
 
 
 
@@ -46,8 +47,8 @@ export class FactureService {
       return this.http.delete(`${this.apiUrl}/${Id}`, { responseType: 'text' });
     }
 
-    getAll(): Observable<any> {
-      return this.http.get(`${this.apiUrl}`);
+    getAll(): Observable<Facture> {
+      return this.http.get<Facture>(`${this.apiUrl}`).pipe();
     }
 
     deleteAll(Id: string): Observable<any> {

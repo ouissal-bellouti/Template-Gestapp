@@ -44,6 +44,8 @@ export class ProduitEditComponent implements OnInit {
   }
 
 
+
+
   onSelectedFile(event) {
     if (event.target.files.length > 0) {
       const productImage = event.target.files[0];
