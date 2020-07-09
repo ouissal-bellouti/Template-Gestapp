@@ -1,1 +1,130 @@
-<p>add-facture works!</p>
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h3 class="title">Ajouter une facture</h3>
+        <div class="button-row">
+          <a class="title" class="disabled" color="" routerLink="'/devis'"><button class="btn btn-danger btn-link">Liste</button></a> / Ajouter
+        </div>
+      </div>
+
+   <div class="card-body">
+     <form [formGroup] ="this.service.formData" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <input type="hidden" class="form-control" formControlName="nomClient" id="nomClient">
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              <label> <strong> Ref Devis </strong> </label>
+              <input type="hidden" formControlName="Id">
+              <input
+              class="form-control"
+              type="text"
+              formControlName="numero"
+              Id="string"
+              readonly
+              />
+            </div>
+          </div>
+
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              <label> Date Création</label>
+              <input
+              type="date"
+              class="form-control"
+              formControlName="DateLivraison"
+              placeholder="DateLivraison"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-4 pr-md-1">
+            <div class="form-group">
+              <label> Client </label>
+              <select
+              name="clientId"
+              class="form-control"
+              formControlName="clientId"
+              id="clientId"
+              (change)="OnSelectClient($event)"
+              >
+              <option value="0">-Select-</option>
+              <option *ngFor="let client of this.ClientList" value=" {{Client.Id}} "> {{Client.Nom}} </option>
+              </select>
+            </div>
+          </div>
+          </div>
+
+          <table class="table table-borderless">
+            <thead>
+              <th>Designation</th>
+              <th>Quantité</th>
+              <th>  Prix HT  </th>
+              <th> Totale HT  </th>
+              <th>  TVA  </th>
+              <th>  Totale TTC  </th>
+              <th>
+                <button   class="btn btn-sm- btn-dark text-light" (click)="AddData(Id,'A')">
+                <i class=" tim-icons icon-simple-add"> </i>
+
+              </button>
+            </th>
+            </thead>
+            <tbody>
+              <tr >
+                <td>
+                  Aucune Article sélectionnée...
+                </td>
+              </tr>
+              <tr *ngFor="let item of service.list; let i=index;">
+                <td> {{item.Designation}} </td>
+                <td> {{item.Quantite}} </td>
+                <td> {{item.prixHT}} </td>
+                <td> {{item.TVA}} </td>
+                <td> {{item.PrixTTC}} </td>
+                <td> {{item.PrixTTC}} </td>
+                <td>
+                    <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body">
+                      <i class=" tim-icons icon-pencil"> </i>
+                    </button>
+                    <button class=" btn btn-link" placement="left" ngbTooltip="Delete">
+                      <i class=" tim-icons icon-trash-simple"> </i>
+                    </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="form-group row">
+            <div class="col-sm-4 mb-3 mb-sm-0">
+              <div class="form-group">
+                  <label>Total Ht : </label>
+                  <input type="text" class="form-control" id="PrixHT" formControlName="PrixHT" readonly>
+              </div>
+              </div>
+              <div class="col-sm-4 mb-3 mb-sm-0">
+              <div class="form-group">
+                  <label>Total Tva  : </label>
+                  <input type="text" class="form-control" id="TVA" formControlName="TVA" readonly>
+              </div>
+              </div>
+              <div class="col-sm-4 mb-3 mb-sm-0">
+              <div class="form-group">
+              <label>Total TTC : </label>
+              <input type="text" class="form-control" id="totTTC" formControlName="PrixTTC" readonly>
+              </div>
+              </div>
+          </div>
+
+     <div class=" card-footer">
+    <button class=" btn btn-fill btn-danger" type="submit" >Save</button>
+       </div>
+     </form>
+
+   </div>
+
+
+    </div>
+
+  </div>
+</div>
+

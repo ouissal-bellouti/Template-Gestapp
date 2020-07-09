@@ -1,8 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup } from '@angular/forms';
+
+
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin':'http://localhost:5000'})
+};
+
 
 @Injectable({
   providedIn: 'root'

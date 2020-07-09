@@ -43,7 +43,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let devis of devisList">
-                  <td class="hidden"> </td>
+                  <td class="hidden"> {{devis.Id}} </td>
                   <td> {{devis.dateLivraison | date:'dd/MM/yyyy'}} </td>
                   <td> {{devis.Client}} </td>
                   <td> {{devis.Artcle}} </td>

@@ -11,7 +11,7 @@
               <div class="md-form mt-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
               </div>
-              <button class=" btn btn-inline-dnger" type="button"  ngbTooltip="Ajouter" container="body" >
+              <button class=" btn btn-inline-dnger" type="button"  ngbTooltip="Ajouter" container="body" (click)="newFacture()" >
                 <i class=" tim-icons icon-simple-add"> </i>
               </button>
               <button class=" btn btn-inline-dnger" type="button"  ngbTooltip="PDF">
@@ -35,17 +35,33 @@
               <thead class=" text-primary">
                 <tr>
                   <th>Date DE CREATION</th>
+                  <th>STATUT</th>
                   <th>CLIENT</th>
-                  <th>DATE D'EHERANCE</th>
-                  <th>TOTALE TTC</th>
-                  <th>TOTALE HT</th>
+                  <th>DATE D'ECEHEANCE</th>
+                  <th>MONTANT</th>
                   <th class="text-center">Actions</th>
                 </tr>
               </thead>
-              <tbody>
-
-              </tbody>
-            </table>
+                <tbody>
+                    <tr *ngFor="let facture of factureList">
+                      <td scope="row"></td>
+                      <td> {{facture.DateCreation}} </td>
+                      <td> {{facture.Statut}} </td>
+                      <td> {{facture.DateEcehance}} </td>
+                      <td> {{facture.PrixTTC}} </td>
+                      <td>
+                        <div>
+                        <button class=" btn btn-link" type="button" placement="left" ngbTooltip="Edit" container="body" (click)="onSelect(facture)">
+                          <i class=" tim-icons icon-pencil"> </i>
+                        </button>
+                        <button class=" btn btn-link" placement="left" ngbTooltip="Delete" (click)="onDelete()">
+                          <i class=" tim-icons icon-trash-simple"> </i>
+                        </button>
+                      </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
           </div>
         </div>
       </div>

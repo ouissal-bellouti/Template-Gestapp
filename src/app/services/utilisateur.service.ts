@@ -24,20 +24,20 @@ export class UtilisateurService {
   listData: Utilisateur[];
   constructor(private http: HttpClient) { }
 
-  getData(Id: string): Observable<object>{
-    return this.http.get(`${this.apiUrl}/api/Utilisateurs/${Id}`)
+  getData(Id: string): Observable<Utilisateur>{
+    return this.http.get<Utilisateur>(`${this.apiUrl}/api/Utilisateurs/${Id}`)
   }
-  postData(info) : Observable<object>{
-    return this.http.post(`${this.apiUrl}/api/Utilisateurs`,info);
+  postData(info) : Observable<Utilisateur>{
+    return this.http.post<Utilisateur>(`${this.apiUrl}/api/Utilisateurs`,info);
   }
   putData(Id: string, value:any):  Observable<object>{
     return this.http.put(`${this.apiUrl}/api/Utilisateurs/${Id}`,value);
   }
-  deleteData(Id: string): Observable<any>{
-    return this.http.delete(`${this.apiUrl}/api/Utilisateurs/${Id}`);
+  deleteData(Id: string): Observable<Utilisateur>{
+    return this.http.delete<Utilisateur>(`${this.apiUrl}/api/Utilisateurs/${Id}`);
   }
-  public getAll():Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/Utilisateurs`);
+  public getAll():Observable<Utilisateur[]> {
+    return this.http.get<Utilisateur[]>(`${this.apiUrl}/api/Utilisateurs`).pipe();
   }
 
 }

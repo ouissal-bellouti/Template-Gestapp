@@ -15,7 +15,6 @@ import { LigneDevis } from '../ligneDevis';
 import { ClientService } from 'src/app/services/client.service';
 import { ArticleService } from 'src/app/services/article.service';
 import { Client } from '../client';
-import { Article } from '../article';
 pdfmake.vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -28,7 +27,7 @@ export class DevisComponent implements OnInit {
 
 
 
-  devisList: any;
+  devisList: Devis;
   SearchText: string;
 
   constructor(
@@ -68,15 +67,6 @@ export class DevisComponent implements OnInit {
     this.router.navigate(['/add-devis']);
   }
 
-
-  onSubmit(){
-    this.f['article'].setValue(this.service.list);
-      this.service.saveOrUpdate(this.service.formData.value).
-      subscribe( data => {
-        this.toastr.success( 'Validation Faite avec Success');
-        this.router.navigate(['/devis']);
-      });
-   }
    getData(){
      this.service.getAll().subscribe(
        Response => {this.service.list = Response}

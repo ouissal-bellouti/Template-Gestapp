@@ -19,4 +19,14 @@ export class ProduitsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  deleteProduit(Id: string) {
+    this.api.deleteProduit(Id)
+    .subscribe(res => {
+      this.router.navigate(['/produits']);
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
 }

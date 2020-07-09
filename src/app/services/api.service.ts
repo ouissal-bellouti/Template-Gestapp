@@ -10,10 +10,11 @@ import { FormGroup } from '@angular/forms';
 
 
 
-const httpOptions = {
-  headers: new HttpHeaders({'': ''})
-};
 
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin':'http://localhost:5000'})
+};
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class ApiService {
   listData : Produit[];
   public dataForm:  FormGroup;
 
-
+   apiUrl='http://localhost:5000/api'
   constructor(private http: HttpClient) { }
 
 

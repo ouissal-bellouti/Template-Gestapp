@@ -1,5 +1,3 @@
-import { Article } from './article';
-import { Guid } from 'guid-typescript';
 import { Client } from './client';
 import { Devis } from './devis';
 

@@ -5,6 +5,12 @@ import { Categorie } from '../pages/categorie';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin':'http://localhost:5000'})
+};
+
 @Injectable({
   providedIn: 'root'
 })
